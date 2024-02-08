@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductCartComponent } from '../../../components/product-cart/product-cart.component';
+import { ProductCartComponent } from '../../components/product-cart/product-cart.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -15,7 +15,7 @@ export class ProductsComponent {
   isOpenCategory = false;
   isOpenRate = false;
   isOpenSort = false;
-  isOpenMenu = true;
+  isOpenMenu = false;
   isSuccess: boolean = true;
   list = [{type: "Outdoor", name: "monstera"}, {type: "Indoor", name: "Oak Tree"}, {type: "Outdoor", name: "monstera"}, {type: "Indoor", name: "Oak Tree"}, {type: "Outdoor", name: "monstera"}, {type: "Indoor", name: "Oak Tree"}, {type: "Outdoor", name: "monstera"}, {type: "Indoor", name: "Oak Tree"}];
   
