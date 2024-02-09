@@ -36,10 +36,12 @@
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a [routerLinkActive]="['bg-gray-900', 'text-white']" routerLink='home' class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+            <a [routerLinkActive]="['bg-gray-900', 'text-white']" routerLink='/home' class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
               aria-current="page">Home</a>
-            <a [routerLinkActive]="['bg-gray-900', 'text-white']" routerLink='product'
+            <a [routerLinkActive]="['bg-gray-900', 'text-white']" routerLink='/product'
               class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Products</a>
+              <a [routerLinkActive]="['bg-gray-900', 'text-white']" routerLink='/wishlist'
+              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Wishlist</a>
           </div>
         </div>
       </div>
@@ -120,9 +122,9 @@
   <div [ngClass]="isMobileMenuOpen ? 'block' : 'hidden'" class="sm:hidden" id="mobile-menu">
     <div class="space-y-1 px-2 pb-3 pt-2">
       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-      <a [routerLinkActive]="['bg-gray-900', 'text-white']" routerLink="home" href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+      <a [routerLinkActive]="['bg-gray-900', 'text-white']" routerLink="/home" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
         aria-current="page">Home</a>
-      <a [routerLinkActive]="['bg-gray-900', 'text-white']" routerLink="product" href="#"
+      <a [routerLinkActive]="['bg-gray-900', 'text-white']" routerLink="/product"
         class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Products</a>
 
     </div>
