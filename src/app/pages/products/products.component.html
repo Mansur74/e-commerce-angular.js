@@ -379,7 +379,7 @@
           <div class="border-b border-gray-200 py-6">
             <h3 class="-my-3 flow-root">
               <!-- Expand/collapse section button -->
-              <button (click)="toggleColor()" type="button" class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
+              <button (click)="toggleColor()" type="button" class="flex w-full items-center justify-between bg-gray-100 py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
                 <span class="font-medium text-gray-900">Color</span>
                 <span class="ml-6 flex items-center">
                   <!-- Expand icon, show/hide based on section open state. -->
@@ -426,7 +426,7 @@
           <div class="border-b border-gray-200 py-6">
             <h3 class="-my-3 flow-root">
               <!-- Expand/collapse section button -->
-              <button (click)="toggleCategory()" type="button" class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-1" aria-expanded="false">
+              <button (click)="toggleCategory()" type="button" class="flex w-full items-center justify-between bg-gray-100 py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-1" aria-expanded="false">
                 <span class="font-medium text-gray-900">Category</span>
                 <span class="ml-6 flex items-center">
                   <!-- Expand icon, show/hide based on section open state. -->
@@ -469,7 +469,7 @@
           <div class="border-b border-gray-200 py-6">
             <h3 class="-my-3 flow-root">
               <!-- Expand/collapse section button -->
-              <button (click)="toggleRate()" type="button" class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-2" aria-expanded="false">
+              <button (click)="toggleRate()" type="button" class="flex w-full items-center justify-between bg-gray-100 py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-2" aria-expanded="false">
                 <span class="font-medium text-gray-900">Rate</span>
                 <span class="ml-6 flex items-center">
                   <!-- Expand icon, show/hide based on section open state. -->
@@ -665,7 +665,7 @@
           
           <div class="p-1 flex flex-wrap">
             
-              @for(product of list; track product)
+              @for(product of products; track product)
               {
                 <app-product-cart [product]="product">
           

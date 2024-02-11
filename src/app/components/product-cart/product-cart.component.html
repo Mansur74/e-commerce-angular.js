@@ -1,4 +1,4 @@
-<div [ngClass]="{'bg-purple-500' : product.type === 'Outdoor', 'bg-orange-500' : product.type === 'Indoor'}"
+<div routerLink="product-detail" [ngClass]="{'bg-purple-500' : product.color === 7, 'bg-orange-500' : product.color !== 7}"
   class="flex-shrink-0 m-6 relative overflow-hidden bg-orange-500 rounded-lg max-w-xs shadow-lg group">
   <svg class="absolute bottom-0 left-0 mb-8 scale-150 group-hover:scale-[1.65] transition-transform"
     viewBox="0 0 375 283" fill="none" style="opacity: 0.1;">
@@ -13,9 +13,9 @@
       src="https://user-images.githubusercontent.com/2805249/64069899-8bdaa180-cc97-11e9-9b19-1a9e1a254c18.png" alt="">
   </div>
   <div class="relative text-white px-6 pb-6 mt-6">
-    <span class="block opacity-75 -mb-1">{{product.type}}</span>
+    <span class="block opacity-75 -mb-1">{{product.sku}}</span>
     <div class="flex justify-between">
-      <span class="block font-semibold text-xl">{{product.name}}</span>
+      <span class="block font-semibold text-xl">{{product.descripition}}</span>
       <span
         class="block bg-white rounded-full text-orange-500 text-xs font-bold px-3 py-2 leading-none flex items-center">$36.00</span>
     </div>

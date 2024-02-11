@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductCartComponent } from '../../components/product-cart/product-cart.component';
 import { CommonModule } from '@angular/common';
+import { getAllProducts } from '../../services/ProductService';
+import { Product } from '../../interfaces/Product';
 
 @Component({
   selector: 'app-products',
@@ -9,7 +11,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit{
+
+  ngOnInit(): void {
+    this.fetchProducts();
+  }
 
   isOpenColor = false;
   isOpenCategory = false;
@@ -17,8 +23,13 @@ export class ProductsComponent {
   isOpenSort = false;
   isOpenMenu = false;
   isSuccess: boolean = true;
-  list = [{type: "Outdoor", name: "monstera"}, {type: "Indoor", name: "Oak Tree"}, {type: "Outdoor", name: "monstera"}, {type: "Indoor", name: "Oak Tree"}, {type: "Outdoor", name: "monstera"}, {type: "Indoor", name: "Oak Tree"}, {type: "Outdoor", name: "monstera"}, {type: "Indoor", name: "Oak Tree"}];
-  
+  products! : Product[];
+
+  async fetchProducts()
+  {
+    const result = await getAllProducts();
+    this.products = result.data.data;
+  }
 
   toggleSortDropdown()
   {

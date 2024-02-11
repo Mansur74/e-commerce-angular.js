@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../../interfaces/product';
+import { Product } from '../../interfaces/Product';
 import { CommonModule } from '@angular/common';
 
 @Component({

@@ -5,11 +5,13 @@ import { ProductsComponent } from './pages/products/products.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent}, 
   {path: 'product', component: ProductsComponent},
   {path: 'cart', component: CartComponent},
   {path: 'wishlist', component: WishlistComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent},
+  {path: 'product-detail', component: ProductDetailComponent}
 ];
