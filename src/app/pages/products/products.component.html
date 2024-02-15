@@ -667,7 +667,7 @@
             
               @for(product of products; track product)
               {
-                <app-product-cart [product]="product">
+                <app-product-cart [product]="product" [routerLink]="'/product/' + product.id" class="cursor-pointer">
           
                 </app-product-cart>
               }

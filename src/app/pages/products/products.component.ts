@@ -3,19 +3,17 @@ import { ProductCartComponent } from '../../components/product-cart/product-cart
 import { CommonModule } from '@angular/common';
 import { getAllProducts } from '../../services/ProductService';
 import { Product } from '../../interfaces/Product';
+import { RouterLink } from '@angular/router';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [ProductCartComponent, CommonModule],
+  imports: [ProductCartComponent, CommonModule, RouterLink],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit{
-
-  ngOnInit(): void {
-    this.fetchProducts();
-  }
 
   isOpenColor = false;
   isOpenCategory = false;
@@ -25,10 +23,22 @@ export class ProductsComponent implements OnInit{
   isSuccess: boolean = true;
   products! : Product[];
 
-  async fetchProducts()
+  constructor(private router: Router)
+  {
+
+  }
+
+  ngOnInit() {
+    if(localStorage.getItem("refreshToken") == null && sessionStorage.getItem("refreshToken") == null)
+      this.router.navigate(["/sign-in"]);
+    else
+      this.getProducts();
+  }
+
+  async getProducts()
   {
     const result = await getAllProducts();
-    this.products = result.data.data;
+    this.products = [...result.data.data];
   }
 
   toggleSortDropdown()

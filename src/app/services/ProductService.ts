@@ -6,3 +6,8 @@ export const getAllProducts = async () => {
   const result = await axios.get<DataResult<Product[]>>(`http://localhost:8080/api/product`);
   return result;
 }
+
+export const getProductById = async (id: string) => {
+  const result = await axios.get<DataResult<Product>>(`http://localhost:8080/api/product/${id}`);
+  return result;
+}
