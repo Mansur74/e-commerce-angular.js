@@ -5,6 +5,7 @@ import { Product } from '../../interfaces/Product';
 import { CommonModule } from '@angular/common';
 import { createCart } from '../../services/CartService';
 import { Cart } from '../../interfaces/Cart';
+import { getAccessToken } from '../../services/AuthService';
 
 @Component({
   selector: 'app-product-detail',
@@ -28,7 +29,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getProduct = async (productId: string) => {
-    const result = await getProductById(productId);
+    const accessToken = (await getAccessToken()).data.data.accessToken;
+    const result = await getProductById(productId, accessToken);
     this.product = result.data.data;
   }
 

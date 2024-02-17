@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { User } from '../../interfaces/User';
 import { signUp } from '../../services/AuthService';
 
@@ -23,7 +23,7 @@ export class SignUpComponent implements OnInit {
     remember: new FormControl(false)
   });
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -34,6 +34,8 @@ export class SignUpComponent implements OnInit {
     {
       const user: User = {firstName: this.firstname.value!, lastName: this.lastname.value!, userName: this.username.value!, email: this.email.value!, password: this.password.value!}
       const result = await signUp(user);
+      this.router.navigate(["/sign-in"]);
+
     }
 
   }

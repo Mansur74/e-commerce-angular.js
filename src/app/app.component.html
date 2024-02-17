@@ -1,6 +1,6 @@
-<app-navbar></app-navbar>
+<app-navbar [isSignIn]="isSignIn" ></app-navbar>
 <div class="p-6">
-  <router-outlet>
+  <router-outlet (activate)="handleSignInEvent($event)">
 
   </router-outlet>
 </div>

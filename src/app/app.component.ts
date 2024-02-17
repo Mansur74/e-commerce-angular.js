@@ -13,5 +13,13 @@ import { FooterComponent } from './components/footer/footer.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'e-commerce';
+  isSignIn : boolean = false;
+
+  handleSignInEvent = (ref: any) => {
+    ref.signInEmitter.subscribe((data: boolean) =>{
+      this.isSignIn = data;
+    });
+  }
+
+
 }

@@ -5,6 +5,7 @@ import { getAllProducts } from '../../services/ProductService';
 import { Product } from '../../interfaces/Product';
 import { RouterLink } from '@angular/router';
 import {Router} from "@angular/router"
+import { getAccessToken } from '../../services/AuthService';
 
 @Component({
   selector: 'app-products',
@@ -37,7 +38,8 @@ export class ProductsComponent implements OnInit{
 
   async getProducts()
   {
-    const result = await getAllProducts();
+    const accessToken = (await getAccessToken()).data.data.accessToken;
+    const result = await getAllProducts(accessToken);
     this.products = [...result.data.data];
   }
 

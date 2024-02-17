@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { signIn } from '../../services/AuthService';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -14,6 +14,10 @@ import { AuthRequest } from '../../interfaces/AuthRequest';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
+  @Output()
+  signInEmitter : EventEmitter<boolean> = new EventEmitter();
+
+
   signInFormGroup = new FormGroup({
     email: new FormControl('', Validators.email),
     password: new FormControl('', Validators.required),
@@ -39,6 +43,7 @@ export class SignInComponent implements OnInit {
       {
         sessionStorage.setItem("refreshToken", result.data.data.refreshToken);
       }
+      this.signInEmitter.emit(true);
       this.router.navigate(["/product"]);
 
     }
