@@ -1,3 +1,5 @@
+import { Category } from "./Category"
+
 export interface Product {
   id? : number,
   sku?: string,
@@ -7,5 +9,5 @@ export interface Product {
   color?: string,
   stock?: number,
   imgURL?: string 
-
+  categories?: Category[]
 }

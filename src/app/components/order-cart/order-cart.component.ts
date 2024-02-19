@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../interfaces/Product';
+import { Cart } from '../../interfaces/Cart';
+import { updateCart } from '../../services/CartService';
 
 @Component({
   selector: 'app-order-cart',
@@ -11,12 +13,32 @@ import { Product } from '../../interfaces/Product';
 })
 export class OrderCartComponent implements OnInit {
   @Input()
-  product! : Product
+  cart! : Cart
+  @Input()
+  calculate!: () => void
 
   constructor() { }
 
   ngOnInit() {
     
+  }
+
+  increaseQuantity = async () =>{
+    if(this.cart.quantity! <= this.cart.product?.stock!)
+    {
+      this.cart.quantity!++;
+      await updateCart(this.cart, this.cart.id!);
+      this.calculate();
+    }
+  }
+
+  decreaseQuantity = async () =>{
+    if(this.cart.quantity! > 0)
+    {
+      this.cart.quantity!--;
+      await updateCart(this.cart, this.cart.id!);
+      this.calculate();
+    }
   }
 
 }

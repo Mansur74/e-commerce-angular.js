@@ -111,26 +111,10 @@
             <!-- Filter section, show/hide based on section state. -->
             <div [ngClass]="{'block': isOpenCategory, 'hidden': !isOpenCategory}" class="pt-6" id="filter-section-mobile-1">
               <div class="space-y-6">
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-0" name="category[]" value="new-arrivals" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 min-w-0 flex-1 text-gray-500">New Arrivals</label>
-                </div>
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-1" name="category[]" value="sale" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-1" class="ml-3 min-w-0 flex-1 text-gray-500">Sale</label>
-                </div>
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-2" name="category[]" value="travel" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 min-w-0 flex-1 text-gray-500">Travel</label>
-                </div>
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-3" name="category[]" value="organization" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-3" class="ml-3 min-w-0 flex-1 text-gray-500">Organization</label>
-                </div>
-                <div class="flex items-center">
-                  <input id="filter-mobile-category-4" name="category[]" value="accessories" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-4" class="ml-3 min-w-0 flex-1 text-gray-500">Accessories</label>
-                </div>
+                <div *ngFor="let category of categories" class="flex items-center">
+                  <input id="filter-category-0" name="category[]" value="new-arrivals" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-category-0" class="ml-3 text-sm text-gray-600">{{category.name}}</label>
+                </div>          
               </div>
             </div>
           </div>
@@ -443,25 +427,9 @@
             <!-- Filter section, show/hide based on section state. -->
             <div [ngClass]="{'block': isOpenCategory, 'hidden': !isOpenCategory}" class="pt-6" id="filter-section-1">
               <div class="space-y-4">
-                <div class="flex items-center">
-                  <input id="filter-category-0" name="category[]" value="new-arrivals" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-category-0" class="ml-3 text-sm text-gray-600">New Arrivals</label>
-                </div>
-                <div class="flex items-center">
-                  <input id="filter-category-1" name="category[]" value="sale" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-category-1" class="ml-3 text-sm text-gray-600">Sale</label>
-                </div>
-                <div class="flex items-center">
-                  <input id="filter-category-2" name="category[]" value="travel" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-category-2" class="ml-3 text-sm text-gray-600">Travel</label>
-                </div>
-                <div class="flex items-center">
-                  <input id="filter-category-3" name="category[]" value="organization" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-category-3" class="ml-3 text-sm text-gray-600">Organization</label>
-                </div>
-                <div class="flex items-center">
-                  <input id="filter-category-4" name="category[]" value="accessories" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-category-4" class="ml-3 text-sm text-gray-600">Accessories</label>
+                <div *ngFor="let category of categories" class="flex items-center">
+                  <input (click)="updateSelectedCategories($event)" id="filter-category-0" name="category[]" [value]="category.name" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-category-0" class="ml-3 text-sm text-gray-600">{{category.name}}</label>
                 </div>
               </div>
             </div>
@@ -665,7 +633,7 @@
           
           <div class="p-1 flex flex-wrap">
             
-              @for(product of products; track product)
+              @for(product of filteredProducts; track product)
               {
                 <app-product-cart [product]="product" [routerLink]="'/product/' + product.id" class="cursor-pointer">
           

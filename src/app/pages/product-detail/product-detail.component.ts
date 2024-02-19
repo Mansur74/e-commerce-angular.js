@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { getProductById } from '../../services/ProductService';
 import { Product } from '../../interfaces/Product';
 import { CommonModule } from '@angular/common';
 import { createCart } from '../../services/CartService';
 import { Cart } from '../../interfaces/Cart';
-import { getAccessToken } from '../../services/AuthService';
+import { getAccessToken, getRefreshToken, getUser } from '../../services/AuthService';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,29 +16,40 @@ import { getAccessToken } from '../../services/AuthService';
 })
 export class ProductDetailComponent implements OnInit {
 
-  product: Product = {}
-  userId = 1;
-  constructor(private route: ActivatedRoute) 
+  product: Product | null = null;
+  isLoading: boolean = true;
+  constructor(private route: ActivatedRoute, private router: Router) 
   {
 
   }
 
   ngOnInit() {
-    const productId = this.route.snapshot.paramMap.get("id");
-    this.getProduct(productId!);
+    if (localStorage.getItem("refreshToken") == null && sessionStorage.getItem("refreshToken") == null)
+      this.router.navigate(["/sign-in"]);
+    else {
+      const productId = this.route.snapshot.paramMap.get("id");
+      this.getProduct(productId!);
+      this.isLoading = false;
+    }
+
   }
 
   getProduct = async (productId: string) => {
-    const accessToken = (await getAccessToken()).data.data.accessToken;
+    const refreshToken: string = getRefreshToken();
+    const accessToken = (await getAccessToken(refreshToken)).data.data.accessToken;
     const result = await getProductById(productId, accessToken);
     this.product = result.data.data;
+    console.log(this.product.categories);
   }
 
   addToCart = async () => 
   {
+    const refreshToken: string = getRefreshToken();
+    const accessToken = (await getAccessToken(refreshToken)).data.data.accessToken;
     const cart : Cart = {quantity: 1}
     const productId = parseInt(this.route.snapshot.paramMap.get("id")!);
-    const result = await createCart(cart, productId, this.userId);
+    const user = await getUser(accessToken);
+    const result = await createCart(cart, user.data.data.id!, productId);
   }
 
 

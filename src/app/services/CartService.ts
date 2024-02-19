@@ -9,6 +9,11 @@ export const getAllCarts = async () => {
 }
 
 export const createCart = async (cart: Cart, userId: number, productId: number) => {
-  const result = await axios.post<Result>(`http://localhost:8080/api/cart?userId==${userId}&&productId==${productId}`);
+  const result = await axios.post<Result>(`http://localhost:8080/api/cart?userId=${userId}&productId=${productId}`, cart);
+  return result;
+}
+
+export const updateCart = async (cart: Cart, cartId: number) => {
+  const result = await axios.put<Result>(`http://localhost:8080/api/cart/${cartId}`, cart);
   return result;
 }

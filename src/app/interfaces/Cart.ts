@@ -1,6 +1,8 @@
 import { Product } from './Product';
+import { User } from './User';
 export interface Cart {
   id? : number,
   quantity?: number,
-  Product?: Product
+  user?: User,
+  product?: Product
 }

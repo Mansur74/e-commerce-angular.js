@@ -1,3 +1,4 @@
+import { RefreshToken } from './../interfaces/RefreshToken';
 import axios from "axios";
 import { DataResult } from "../interfaces/DataResult";
 import { AuthResponse } from "../interfaces/AuthResponse";
@@ -5,7 +6,6 @@ import { User } from "../interfaces/User";
 import { Result } from "../interfaces/Result";
 import { AuthRequest } from "../interfaces/AuthRequest";
 import { AccessToken } from "../interfaces/AccessToken";
-import { RefreshToken } from "../interfaces/RefreshToken";
 
 export const signIn = async (req: AuthRequest) => {
   const result = await axios.post<DataResult<AuthResponse>>(`http://localhost:8080/api/authorization/login`, req);
@@ -17,13 +17,29 @@ export const signUp = async (user: User) => {
   return result;
 }
 
-export const getAccessToken = async () => {
-  const local: string = localStorage.getItem("refreshToken")!;
-  const session: string = sessionStorage.getItem("refreshToken")!;
-  const refreshToken: string = local != null ? local : session;
+export const getAccessToken = async (refreshToken: string) => {
   const body: RefreshToken = {refreshToken: refreshToken}
 
   const result = await axios.post<DataResult<AccessToken>>(`http://localhost:8080/api/authorization/accessToken`, body);
   return result;
 }
+
+export const getUser = async (accessToken: string) => {
+
+  const result = await axios.get<DataResult<User>>(`http://localhost:8080/api/authorization/me`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+  return result;
+}
+
+export const getRefreshToken = () =>
+{
+  const local: string = localStorage.getItem("refreshToken")!;
+  const session: string = sessionStorage.getItem("refreshToken")!;
+  const refreshToken: string = local != null ? local : session;
+  return refreshToken;
+}
+
 
