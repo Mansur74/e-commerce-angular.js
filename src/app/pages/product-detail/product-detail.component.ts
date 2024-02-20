@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { createCart } from '../../services/CartService';
 import { Cart } from '../../interfaces/Cart';
 import { getAccessToken, getRefreshToken, getUser } from '../../services/AuthService';
+import { ReviewCartComponent } from '../../components/review-cart/review-cart.component';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReviewCartComponent],
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
@@ -29,7 +30,6 @@ export class ProductDetailComponent implements OnInit {
     else {
       const productId = this.route.snapshot.paramMap.get("id");
       this.getProduct(productId!);
-      this.isLoading = false;
     }
 
   }
@@ -37,9 +37,14 @@ export class ProductDetailComponent implements OnInit {
   getProduct = async (productId: string) => {
     const refreshToken: string = getRefreshToken();
     const accessToken = (await getAccessToken(refreshToken)).data.data.accessToken;
-    const result = await getProductById(productId, accessToken);
+    try {
+      const result = await getProductById(productId, accessToken);
     this.product = result.data.data;
-    console.log(this.product.categories);
+    } catch (error) {
+      this.product = null;
+      console.log("dsfasf", this.product)
+    }
+    this.isLoading = false;
   }
 
   addToCart = async () => 

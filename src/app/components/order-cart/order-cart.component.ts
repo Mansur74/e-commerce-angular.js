@@ -3,11 +3,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../interfaces/Product';
 import { Cart } from '../../interfaces/Cart';
 import { updateCart } from '../../services/CartService';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-order-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './order-cart.component.html',
   styleUrls: ['./order-cart.component.css']
 })

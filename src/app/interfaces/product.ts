@@ -1,4 +1,6 @@
+import { Shop } from './Shop';
 import { Category } from "./Category"
+import { ProductReview } from './ProductReview';
 
 export interface Product {
   id? : number,
@@ -9,5 +11,7 @@ export interface Product {
   color?: string,
   stock?: number,
   imgURL?: string 
-  categories?: Category[]
+  categories?: Category[],
+  reviews?: ProductReview[],
+  shop?: Shop
 }
