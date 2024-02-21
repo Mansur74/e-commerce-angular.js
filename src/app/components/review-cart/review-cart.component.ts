@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductReview } from '../../interfaces/ProductReview';
 import { ProductRate } from '../../interfaces/ProductRate';
+import { getProductRateById } from '../../services/ProductRate';
 
 @Component({
   selector: 'app-review-cart',
@@ -13,11 +14,23 @@ import { ProductRate } from '../../interfaces/ProductRate';
 export class ReviewCartComponent implements OnInit {
   @Input()
   productReview!: ProductReview;
+  productRate!: ProductRate;
   rateNums = [1, 2, 3, 4, 5];
 
   constructor() { }
 
   ngOnInit() {
+    this.getProductRate();
   }
+
+  getProductRate = async () => {
+    const userId: number = this.productReview.user.id!;
+    const productId: number = this.productReview.product.id!;
+    const result = await getProductRateById(userId, productId);
+    this.productRate = result.data.data;
+    console.log(this.productRate);
+  }
+
+
 
 }

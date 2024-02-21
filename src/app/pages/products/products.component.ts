@@ -49,6 +49,7 @@ export class ProductsComponent implements OnInit {
     const accessToken = (await getAccessToken(refreshToken)).data.data.accessToken;
     const result = await getAllProducts(accessToken);
     this.products = [...result.data.data];
+    this.filterProducts();
   }
 
   updateSelectedCategories = (event: any) => {
@@ -61,7 +62,6 @@ export class ProductsComponent implements OnInit {
     }
 
     this.filterProducts();
-    console.log(this.filteredProducts)
       
   }
 
@@ -75,6 +75,8 @@ export class ProductsComponent implements OnInit {
         });
       }); 
     })
+    if(this.filterProducts.length == 0)
+      this.filteredProducts = this.products;
   }
 
   getCategories = async () => {

@@ -22,22 +22,26 @@ export class SignUpComponent implements OnInit {
     password: new FormControl('', Validators.required),
     remember: new FormControl(false)
   });
+  isLoading: boolean = false;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  async onSubmit()
-  {
-    if(this.signUpFormGroup.valid)
-    {
-      const user: User = {firstName: this.firstname.value!, lastName: this.lastname.value!, userName: this.username.value!, email: this.email.value!, password: this.password.value!}
-      const result = await signUp(user);
-      this.router.navigate(["/sign-in"]);
+  async onSubmit() {
+    this.isLoading = true;
+    if (this.signUpFormGroup.valid) {
+      try {
+        const user: User = { firstName: this.firstname.value!, lastName: this.lastname.value!, userName: this.username.value!, email: this.email.value!, password: this.password.value! }
+        const result = await signUp(user);
+        this.router.navigate(["/sign-in"]);
+      } catch (error) {
+        console.log(error);
+      }
 
     }
-
+    this.isLoading = false;
   }
 
   get email() {
@@ -57,7 +61,7 @@ export class SignUpComponent implements OnInit {
   }
 
   get username() {
-    return this.signUpFormGroup.controls.password;
+    return this.signUpFormGroup.controls.username;
   }
 
 
