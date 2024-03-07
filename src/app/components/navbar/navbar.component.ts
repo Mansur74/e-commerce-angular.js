@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
@@ -22,6 +22,12 @@ export class NavbarComponent implements OnInit{
     else
       this.isSignIn = true;
 
+  }
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: Event) {
+    if (!(event.target as HTMLElement).closest('.relative')) {
+      this.isOpen = false;
+    }
   }
 
   toggleDropdown(){

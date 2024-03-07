@@ -1,7 +1,5 @@
 <app-navbar [isSignIn]="isSignIn" ></app-navbar>
-<div class="h-full p-6">
-  <router-outlet (activate)="handleSignInEvent($event)">
+<router-outlet (activate)="handleSignInEvent($event)">
 
-  </router-outlet>
-</div>
-<app-footer></app-footer>
+</router-outlet>
+<app-footer class="mt-auto"></app-footer>

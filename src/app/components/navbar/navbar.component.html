@@ -1,4 +1,4 @@
-<nav class="bg-gray-800 mb-2">
+<nav class="bg-gray-800">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -81,7 +81,7 @@
         </div>
 
         <!-- Profile dropdown -->
-        <div *ngIf="isSignIn" class="relative ml-3">
+        <div *ngIf="isSignIn" class="relative ml-3" (clickOutside)="$event">
           <div>
             <button type="button" (click)="toggleDropdown()"
               class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
