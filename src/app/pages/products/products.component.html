@@ -1,0 +1,93 @@
+<div class="container-fluid mt-5">
+  <div class="row p-3">
+    <div class="col-sm-3 d-flex">
+      <div (click)="toggleMenu()" class="d-sm-none d-block me-2 mb-2" id="menu" style="cursor: pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+        </svg>
+      </div>
+
+      <div [ngClass]="{'d-block': isOpenMenu, 'd-none': !isOpenMenu}" class="" id="context">
+        <div style="cursor: pointer;">
+          <h6 (click)="toggleCategory()" id="categories" class="dropdown-toggle">Categories</h6>
+          <div id="furniture-fc" [ngClass]="{'d-block': isOpenCategory, 'd-none': !isOpenCategory}" class="form-check" >
+            <input id="furniture" class="form-check-input" type="checkbox" style="cursor: pointer;">
+            <label for="furniture" class="form-check-label" style="cursor: pointer;">Furniture</label>
+          </div>
+        </div>
+        <div style="cursor: pointer;"><h6 class="dropdown-toggle">Colors</h6></div>
+        <div style="cursor: pointer;"><h6 class="dropdown-toggle">Rates</h6></div>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="row">
+        <input class="form-control mb-3 w-75" type="search" placeholder="Search" aria-label="Search">
+      </div>
+      <div class="row row-cols-2 row-cols-min-3 gap-3">
+        <div *ngFor="let product of products" class="col card" style="width: 18rem; cursor: pointer;" [routerLink]="'/product/'+product.id">
+          <img class="card-img-top"
+            src="https://cgifurniture.com/wp-content/uploads/2020/06/types-of-cg-product-images-view11.jpg"
+            alt="Card image cap">
+
+          <div class="card-body">
+            <span class="d-flex align-items-center">
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+            </span>
+            <p class="text-secondary fs-6 m-0">{{product.sku}}</p>
+            <p class="m-0">{{product.name}}</p>
+            <span class="">Color:</span>
+            <span class="">{{product.color}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
