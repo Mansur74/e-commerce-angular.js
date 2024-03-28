@@ -11,7 +11,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent}, 
-  {path: 'product', component: ProductsComponent},
+  {path: 'products', component: ProductsComponent},
   {path: 'cart', component: CartComponent},
   {path: 'wishlist', component: WishlistComponent},
   {path: 'profile', component: ProfileComponent},

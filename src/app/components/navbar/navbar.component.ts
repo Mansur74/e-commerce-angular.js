@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +13,8 @@ export class NavbarComponent implements OnInit{
   @Input()
   isSignIn : boolean = false;
   isOpen : boolean = false;
+
+  constructor(private router: Router) { }
   isMobileMenuOpen : boolean = false;
 
   ngOnInit(): void {
@@ -30,17 +32,10 @@ export class NavbarComponent implements OnInit{
     }
   }
 
-  toggleDropdown(){
-    this.isOpen = !this.isOpen;
-  }
-
-  toggleMobileMenu(){
-    this.isMobileMenuOpen = !this.isMobileMenuOpen;
-  }
-
   signOut = () => {
     localStorage.removeItem("refreshToken");
     sessionStorage.removeItem("refreshToken");
     this.isSignIn = false;
+    this.router.navigate(["/sign-in"]);
   }
 }
