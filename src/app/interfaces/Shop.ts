@@ -4,7 +4,7 @@ export interface Shop {
   id?: number,
   name?: string,
   description?: string,
-  foundedAt?: Date,
+  foundedAt?: string,
   user?: User,
   products?: Product[]
 }

@@ -1,0 +1,89 @@
+<div class="container-xl px-4 mt-4">
+  <div class="row">
+    <div class="col-xl-4">
+      <div class="card mb-4 mb-xl-0">
+        <div class="card-header">Profile Picture</div>
+        <div class="card-body text-center mx-auto" style="width: 300px; height: 300px;">
+          <img src="https://i.pinimg.com/236x/86/ea/e3/86eae3d8abc2362ad6262916cb950640.jpg" class="w-100 h-100 rounded-circle object-fit-cover mx-auto" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8">
+
+      <div class="card mb-4">
+        <div class="card-header">Account Details</div>
+        <div class="card-body">
+          <form onSubmit={handleEditProfile}>
+
+            <div class="mb-3">
+              <label class="small mb-1" htmlFor="inputUsername">Username (how your name will appear to other users on the site)</label>
+              <input class="form-control" disabled id="inputUsername" type="text" placeholder="Enter your username" defaultValue={user?.userName} />
+            </div>
+
+            <div class="row gx-3 mb-3">
+
+              <div class="col-md-6">
+                <label class="small mb-1" htmlFor="inputFirstName">First name</label>
+                <input class="form-control" name='firstName' id="inputFirstName" type="text" placeholder="Enter your first name" defaultValue={user?.firstName} />
+              </div>
+
+              <div class="col-md-6">
+                <label class="small mb-1" htmlFor="inputLastName">Last name</label>
+                <input class="form-control" name='lastName' id="inputLastName" type="text" placeholder="Enter your last name" defaultValue={user?.lastName} />
+              </div>
+            </div>
+
+            <div class="row gx-3 mb-3">
+
+              <div class="col-md-6">
+                <label class="small mb-1" htmlFor="gender">Gender</label>
+                <select class="form-select" name='gender' aria-label="Default select example" defaultValue={user?.userDetail?.gender}>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label class="small mb-1" htmlFor="location">Location</label>
+                <select class="form-select" name='location' aria-label="Default select example" defaultValue={user?.userDetail?.location}>
+                  <option value="TR">TR</option>
+                  <option value="USA">USA</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="small mb-1" htmlFor="inputEmailAddress">Email address</label>
+              <input class="form-control" disabled id="inputEmailAddress" type="email" placeholder="Enter your email address" defaultValue={user?.email} />
+            </div>
+
+            <div class="row gx-3 mb-3">
+
+              <div class="col-md-6">
+                <label class="small mb-1" htmlFor="phoneNumber">Phone number</label>
+                <input class="form-control" name='phoneNumber' id="phoneNumber" type="tel" placeholder="Enter your phone number" defaultValue={user?.userDetail?.phoneNumber} />
+              </div>
+
+              <div class="col-md-6">
+                <label htmlFor="birthDate" class="form-label">Birth Date</label>
+                <input type="datetime-local" name='birthDate' class="form-control" id="birthDate" aria-describedby="birthDate" defaultValue={user?.userDetail?.birthdate} />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="small mb-1" htmlFor="description">Description</label>
+              <textarea class="form-control" style="resize: none;" name='description' id="description" placeholder="Enter your description" defaultValue={user?.userDetail?.description} ></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label class="small mb-1" htmlFor="imgURL">Image Url</label>
+              <input class="form-control" name='imgURL' id="imgURL" type="text" placeholder="Enter your image URL" defaultValue={user?.userDetail?.imgURL} />
+            </div>
+
+            <button class="btn btn-primary" type="submit">Save changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

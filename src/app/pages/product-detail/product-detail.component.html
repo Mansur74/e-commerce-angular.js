@@ -2,7 +2,7 @@
   <div class="row p-5">
     <div class="col-sm-6">
       <img class="img-fluid rounded"
-        src="https://cgifurniture.com/wp-content/uploads/2020/06/types-of-cg-product-images-view11.jpg">
+      [src]="product?.imgURL">
     </div>
     <div class="col-sm-6">
       <span class="text-secondary">{{product?.sku}}</span>
@@ -36,7 +36,7 @@
           </svg>
         </span>
         <div class="bg-secondary m-2 opacity-50" style="width: 1px; height: 24px;"></div>
-        <span class="text-secondary ml-3">4 Reviews</span>
+        <span class="text-secondary ml-3">{{product?.reviews?.length}} Reviews</span>
       </div>
 
       <p class="lead">
@@ -45,7 +45,7 @@
       <div class="d-flex mb-3">
         <span class="text-secondary me-3">Color</span>
         <button class="rounded-circle text-secondary border border-gray"
-          style="height: 24px; width: 24px;"></button>
+          style="height: 24px; width: 24px;" [ngStyle]="{'background-color': product?.color}"></button>
       </div>
 
       <div class="bg-secondary opacity-50 mb-3" style="height: 1px;"></div>
@@ -53,7 +53,7 @@
       <div class="d-flex justify-content-between mb-5">
         <h3>{{product?.price}}$</h3>
         <div>
-          <button class="btn btn-danger">Add To Cart</button>
+          <button class="btn btn-danger me-2">Add To Cart</button>
           <button class="rounded-circle text-secondary p-1" style="border: none;">
             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               style="width: 24px; height: 24px" viewBox="0 0 24 24">

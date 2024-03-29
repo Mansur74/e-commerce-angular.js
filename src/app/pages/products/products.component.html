@@ -1,78 +1,303 @@
-<div class="container-fluid mt-5">
-  <div class="row p-3">
-    <div class="col-sm-3 d-flex">
-      <div (click)="toggleMenu()" class="d-sm-none d-block me-2 mb-2" id="menu" style="cursor: pointer;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list"
-          viewBox="0 0 16 16">
-          <path fill-rule="evenodd"
-            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
-        </svg>
-      </div>
-
-      <div [ngClass]="{'d-block': isOpenMenu, 'd-none': !isOpenMenu}" class="" id="context">
+<div class="container-fluid mt-5 p-3 px-5">
+  <div class="d-sm-flex">
+    <div class="row me-sm-5 mb-sm-0 mb-2" [ngClass]="{'d-block': isOpenMenu, 'd-none': !isOpenMenu}">
+      <div class="h-100 p-0" id="context">
         <div style="cursor: pointer;">
           <h6 (click)="toggleCategory()" id="categories" class="dropdown-toggle">Categories</h6>
-          <div id="furniture-fc" [ngClass]="{'d-block': isOpenCategory, 'd-none': !isOpenCategory}" class="form-check" >
-            <input id="furniture" class="form-check-input" type="checkbox" style="cursor: pointer;">
-            <label for="furniture" class="form-check-label" style="cursor: pointer;">Furniture</label>
+          <div class="ms-3" [ngClass]="{'d-block': isOpenCategory, 'd-none': !isOpenCategory}" >
+            <div class="form-check">
+              <input [defaultChecked]="true" id="furniture" class="form-check-input" type="checkbox"
+                style="cursor: pointer;" />
+              <label for="furniture" class="form-check-label" style="cursor: pointer;">Furniture</label>
+            </div>
+            <div class="form-check">
+              <input [defaultChecked]="true" id="phone" class="form-check-input" type="checkbox"
+                style="cursor: pointer;" />
+              <label for="phone" class="form-check-label" style="cursor: pointer;">Phone</label>
+            </div>
           </div>
         </div>
-        <div style="cursor: pointer;"><h6 class="dropdown-toggle">Colors</h6></div>
-        <div style="cursor: pointer;"><h6 class="dropdown-toggle">Rates</h6></div>
+
+        <div style="cursor: pointer;">
+          <h6 (click)="toggleColor()" class="dropdown-toggle">Colors</h6>
+          <div class="ms-3" [ngClass]="{'d-block': isOpenColor, 'd-none': !isOpenColor}">
+            <div class="form-check">
+              <input [defaultChecked]="true" id="red" class="form-check-input" type="checkbox"
+                style="cursor: pointer;" />
+              <label for="red" class="form-check-label" style="cursor: pointer;">Red</label>
+            </div>
+            <div class="form-check">
+              <input [defaultChecked]="true" id="blue" class="form-check-input" type="checkbox"
+                style="cursor: pointer;" />
+              <label for="blue" class="form-check-label" style="cursor: pointer;">Blue</label>
+            </div>
+            <div class="form-check">
+              <input [defaultChecked]="true" id="green" class="form-check-input" type="checkbox"
+                style="cursor: pointer;" />
+              <label for="green" class="form-check-label" style="cursor: pointer;">Green</label>
+            </div>
+          </div>
+        </div>
+
+        <div style="cursor: pointer;">
+          <h6 (click)="toggleRate()" class="dropdown-toggle">Rates</h6>
+          <div class="ms-3" [ngClass]="{'d-block': isOpenRate, 'd-none': !isOpenRate}">
+            <div class="form-check">
+              <input [defaultChecked]="true" id="5" class="form-check-input" type="checkbox" style="cursor: pointer;" />
+              <label for="5" class="form-check-label" style="cursor: pointer;">
+                <span class="d-flex align-items-center">
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                </span>
+              </label>
+            </div>
+            <div class="form-check">
+              <input [defaultChecked]="true" id="4" class="form-check-input" type="checkbox" style="cursor: pointer;" />
+              <label for="4" class="form-check-label" style="cursor: pointer;">
+                <span class="d-flex align-items-center">
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                </span>
+              </label>
+            </div>
+            <div class="form-check">
+              <input [defaultChecked]="true" id="3" class="form-check-input" type="checkbox" style="cursor: pointer;" />
+              <label for="3" class="form-check-label" style="cursor: pointer;">
+                <span class="d-flex align-items-center">
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                </span>
+              </label>
+            </div>
+            <div class="form-check">
+              <input [defaultChecked]="true" id="3" class="form-check-input" type="checkbox" style="cursor: pointer;" />
+              <label for="3" class="form-check-label" style="cursor: pointer;">
+                <span class="d-flex align-items-center">
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                </span>
+              </label>
+            </div>
+            <div class="form-check">
+              <input [defaultChecked]="true" id="3" class="form-check-input" type="checkbox" style="cursor: pointer;" />
+              <label for="3" class="form-check-label" style="cursor: pointer;">
+                <span class="d-flex align-items-center">
+                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                    </path>
+                  </svg>
+                </span>
+              </label>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
-    <div class="col-sm-9">
-      <div class="row">
-        <input class="form-control mb-3 w-75" type="search" placeholder="Search" aria-label="Search">
+    <div class="w-100">
+      <div class="row mb-3">
+        <div class="col d-flex align-items-center">
+          <input class="row form-control w-75 me-2" type="search" placeholder="Search" aria-label="Search" />
+          <div (click)="toggleMenu()" class="mb-1 d-block" id="menu" style="cursor: pointer;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24"
+            height="24" viewBox="0 0 256 256" xml:space="preserve">
+
+              <defs>
+              </defs>
+              <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+                <path d="M 37.882 90 c -0.338 0 -0.676 -0.086 -0.981 -0.258 c -0.629 -0.354 -1.019 -1.02 -1.019 -1.742 V 45.354 L 3.923 3.208 C 3.464 2.604 3.388 1.791 3.726 1.11 S 4.758 0 5.517 0 h 78.966 c 0.76 0 1.453 0.43 1.791 1.11 s 0.262 1.493 -0.197 2.098 L 54.118 45.354 V 79.37 c 0 0.699 -0.365 1.348 -0.963 1.71 l -14.237 8.63 C 38.601 89.903 38.241 90 37.882 90 z M 9.543 4 l 29.932 39.474 c 0.264 0.348 0.406 0.772 0.406 1.208 v 39.767 l 10.236 -6.205 V 44.682 c 0 -0.437 0.143 -0.861 0.406 -1.208 L 80.457 4 H 9.543 z M 52.118 79.37 h 0.01 H 52.118 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+              </g>
+              </svg>
+          </div>
+        </div>
       </div>
       <div class="row row-cols-2 row-cols-min-3 gap-3">
-        <div *ngFor="let product of products" class="col card" style="width: 18rem; cursor: pointer;" [routerLink]="'/product/'+product.id">
-          <img class="card-img-top"
-            src="https://cgifurniture.com/wp-content/uploads/2020/06/types-of-cg-product-images-view11.jpg"
+        <div *ngFor="let product of products" class="col card p-0" style="width: 18rem; cursor: pointer;"
+          [routerLink]="'/product/'+product.id">
+          <img class="card-img-top object-fit-contain"
+            height="256"
+            width="256"
+            [src]="product.imgURL"
             alt="Card image cap">
 
           <div class="card-body">
             <span class="d-flex align-items-center">
               <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-                <path
-                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                 </path>
               </svg>
               <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-                <path
-                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                 </path>
               </svg>
               <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-                <path
-                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                 </path>
               </svg>
               <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-                <path
-                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                 </path>
               </svg>
               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-                <path
-                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                 </path>
               </svg>
             </span>
             <p class="text-secondary fs-6 m-0">{{product.sku}}</p>
             <p class="m-0">{{product.name}}</p>
-            <span class="">Color:</span>
-            <span class="">{{product.color}}</span>
+            <div class="d-flex align-items-center">
+              <span class="me-1">Color:</span>
+              <button class="rounded-circle border border-2 border-gray"
+                style="height: 24px; width: 24px;" [ngStyle]="{'background-color': product.color}"></button>
+            </div>
           </div>
         </div>
       </div>
       <div class="row mt-2">
-        <ul class="pagination">
+        <ul class="pagination m-0">
           <li class="page-item">
             <a class="page-link" href="#" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
