@@ -252,9 +252,8 @@
       <div class="row row-cols-2 row-cols-min-3 gap-3">
         <div *ngFor="let product of products" class="col card p-0" style="width: 18rem; cursor: pointer;"
           [routerLink]="'/product/'+product.id">
-          <img class="card-img-top object-fit-contain"
-            height="256"
-            width="256"
+          <img class="card-img-top object-fit-cover"
+            height="192"
             [src]="product.imgURL"
             alt="Card image cap">
 
