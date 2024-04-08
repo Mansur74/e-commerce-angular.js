@@ -1,8 +1,9 @@
+import { getAllCarts } from './../../services/CartService';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../interfaces/Product';
 import { Cart } from '../../interfaces/Cart';
-import { updateCart } from '../../services/CartService';
+import { deleteCart, updateCart } from '../../services/CartService';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -14,6 +15,8 @@ import { RouterLink } from '@angular/router';
 })
 export class OrderCartComponent implements OnInit {
   @Input()
+  getCarts!: () => void
+  @Input()
   cart! : Cart
   @Input()
   calculate!: () => void
@@ -24,7 +27,7 @@ export class OrderCartComponent implements OnInit {
     
   }
 
-  increaseQuantity = async () =>{
+  increaseQuantity = async () => {
     if(this.cart.quantity! <= this.cart.product?.stock!)
     {
       this.cart.quantity!++;
@@ -33,13 +36,18 @@ export class OrderCartComponent implements OnInit {
     }
   }
 
-  decreaseQuantity = async () =>{
+  decreaseQuantity = async () => {
     if(this.cart.quantity! > 0)
     {
       this.cart.quantity!--;
       await updateCart(this.cart, this.cart.id!);
       this.calculate();
     }
+  }
+
+  handleDeleteCart = async () => {
+    await deleteCart(this.cart.id!);
+    this.getCarts();
   }
 
 }

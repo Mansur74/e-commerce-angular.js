@@ -1,5 +1,5 @@
 <div class="container pt-5">
-  <div class="row p-5">
+  <div class="row pt-5">
     <div class="col-sm-6">
       <img class="img-fluid rounded"
         src="https://cgifurniture.com/wp-content/uploads/2020/06/types-of-cg-product-images-view11.jpg">
@@ -9,23 +9,23 @@
       <h1 class="display-5">{{shop.name}}</h1>
       <div class="d-flex align-items-center">
         <span class="d-flex align-items-center">
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
             </path>
           </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
             </path>
           </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
             </path>
           </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
             </path>
           </svg>
@@ -44,12 +44,77 @@
       </p>
       <div class="d-flex mb-3">
         <span class="text-secondary me-3">Color</span>
-        <button class="rounded-circle text-secondary border border-gray"
-          style="height: 24px; width: 24px;"></button>
+        <button class="rounded-circle text-secondary border border-gray" style="height: 24px; width: 24px;"></button>
       </div>
 
       <div class="bg-secondary opacity-50 mb-3" style="height: 1px;"></div>
 
+      <div class="d-flex justify-content-between mb-5">
+          <button routerLink="/product/create-product" class="btn btn-light me-2 border border-secondary">Add Product</button>
+      </div>
+
     </div>
+  </div>
+  <div class="bg-secondary opacity-50 my-3" style="height: 1px;"></div>
+  <h1 class="display-6">Products</h1>
+  <div class="row row-cols-2 row-cols-min-3 p-2">
+    <div *ngFor="let product of shop.products" class="col card p-0" style="width: 18rem; cursor: pointer;"
+      [routerLink]="'/product/'+product.id">
+      <img class="card-img-top object-fit-cover" height="192" [src]="product.imgURL" alt="Card image cap">
+
+      <div class="card-body">
+        <span class="d-flex align-items-center">
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+            </path>
+          </svg>
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+            </path>
+          </svg>
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+            </path>
+          </svg>
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+            </path>
+          </svg>
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+            </path>
+          </svg>
+        </span>
+        <p class="text-secondary fs-6 m-0">{{product.sku}}</p>
+        <p class="m-0">{{product.name}}</p>
+        <div class="d-flex align-items-center">
+          <span class="me-1">Color:</span>
+          <button class="rounded-circle border border-2 border-gray" style="height: 24px; width: 24px;"
+            [ngStyle]="{'background-color': product.color}"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2 p-2">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
   </div>
 </div>

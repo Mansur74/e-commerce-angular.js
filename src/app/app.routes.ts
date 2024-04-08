@@ -11,17 +11,30 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ShopsComponent } from './pages/shops/shops.component';
 import { ShopDetailComponent } from './pages/shop-detail/shop-detail.component';
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
+import { EditShopComponent } from './pages/edit-shop/edit-shop.component';
+import { CreateProductComponent } from './pages/create-product/create-product.component';
 
 export const routes: Routes = [
-  {path: 'home', component: HomeComponent}, 
-  {path: 'shops', component: ShopsComponent}, 
-  {path: 'shop/:id', component: ShopDetailComponent}, 
-  {path: 'products', component: ProductsComponent},
-  {path: 'cart', component: CartComponent},
-  {path: 'wishlist', component: WishlistComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'profile-edit', component: EditProfileComponent},
-  {path: 'product/:id', component: ProductDetailComponent},
-  {path: 'sign-in', component: SignInComponent},
-  {path: 'sign-up', component: SignUpComponent}
+  { path: 'home', component: HomeComponent },
+  { path: 'shops', component: ShopsComponent },
+  {
+    path: 'shop/:id',
+    children: [{
+      path: 'edit-shop',
+      component: EditShopComponent
+    },
+    {
+      path: '',
+      component: ShopDetailComponent
+    }]
+  },
+  { path: 'products', component: ProductsComponent },
+  { path: 'product/create-product', component: CreateProductComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'wishlist', component: WishlistComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'profile-edit', component: EditProfileComponent },
+  { path: 'product/:id', component: ProductDetailComponent },
+  { path: 'sign-in', component: SignInComponent },
+  { path: 'sign-up', component: SignUpComponent }
 ];

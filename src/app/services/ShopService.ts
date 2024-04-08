@@ -1,8 +1,12 @@
 import axios from "axios";
 import { DataResult } from "../interfaces/DataResult";
 import { Shop } from "../interfaces/Shop";
+import { Result } from "../interfaces/Result";
+import { getAccessToken, getRefreshToken } from "./AuthService";
 
-export const getAllShops = async (accessToken: string) => {
+export const getAllShops = async () => {
+  const refreshToken = getRefreshToken();
+  const accessToken = (await getAccessToken(refreshToken)).data.data.accessToken;
   const result = await axios.get<DataResult<Shop[]>>(`http://localhost:8080/api/shop`, {
     headers: { 
       Authorization: `Bearer ${accessToken}` 
@@ -11,8 +15,21 @@ export const getAllShops = async (accessToken: string) => {
   return result;
 }
 
-export const getShopById = async (accessToken: string, shopId: number) => {
+export const getShopById = async (shopId: number) => {
+  const refreshToken = getRefreshToken();
+  const accessToken = (await getAccessToken(refreshToken)).data.data.accessToken;
   const result = await axios.get<DataResult<Shop>>(`http://localhost:8080/api/shop/${shopId}`, {
+    headers: { 
+      Authorization: `Bearer ${accessToken}` 
+    }
+  });
+  return result;
+}
+
+export const updateShop = async (shop: Shop, shopId: number) => {
+  const refreshToken = getRefreshToken();
+  const accessToken = (await getAccessToken(refreshToken)).data.data.accessToken;
+  const result = await axios.put<Result>(`http://localhost:8080/api/shop/${shopId}`, shop, {
     headers: { 
       Authorization: `Bearer ${accessToken}` 
     }

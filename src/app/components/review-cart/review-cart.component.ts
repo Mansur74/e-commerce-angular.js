@@ -24,8 +24,8 @@ export class ReviewCartComponent implements OnInit {
   }
 
   getProductRate = async () => {
-    const userId: number = this.productReview.user.id!;
-    const productId: number = this.productReview.product.id!;
+    const userId: number = this.productReview.user?.id!;
+    const productId: number = this.productReview.product?.id!;
     const result = await getProductRateById(userId, productId);
     this.productRate = result.data.data;
     console.log(this.productRate);

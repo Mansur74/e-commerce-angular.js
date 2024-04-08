@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../interfaces/User';
-import { getAccessToken, getRefreshToken, getUser } from '../../services/AuthService';
+import { getAccessToken, getRefreshToken } from '../../services/AuthService';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { getUser } from '../../services/UserService';
 
 @Component({
   selector: 'app-profile',
@@ -21,9 +22,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getMe = async () => {
-    const refreshToken = getRefreshToken();
-    const accessToken = (await getAccessToken(refreshToken)).data.data.accessToken;
-    this.user = (await getUser(accessToken)).data.data;
+    this.user = (await getUser()).data.data;
   }
 
 }

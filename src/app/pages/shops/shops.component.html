@@ -49,7 +49,7 @@
       <div class="card-footer">
         <div class="btn-group">
           <button [routerLink]="'/shop/'+shop.id" type="button" class="btn btn-sm btn-outline-secondary">View</button>
-          <button *ngIf="shop.user?.id === user.id" type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+          <a *ngIf="shop.user?.id === user.id" type="button" [routerLink]="'/shop/' + shop.id + '/edit-shop'" class="btn btn-sm btn-outline-secondary">Edit</a>
         </div>
       </div>
     </div>

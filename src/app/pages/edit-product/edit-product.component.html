@@ -1,0 +1,20 @@
+<div class="container-fluid mt-5 pt-3">
+  <form  >
+    <div class="mb-3">
+      <label for="shopName" class="form-label">Shop Name</label>
+      <input type="text" formControlName="shopName" name="shopName" class="form-control" id="shopName" aria-describedby="shopName">
+      <span class="text-danger" *ngIf="shopName.invalid && (shopName.touched || form.submitted)">Shop Name can not be invalid</span>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <input type="text" formControlName="description" name="description" class="form-control" id="description" aria-describedby="description">
+      <span class="text-danger" *ngIf="description.invalid && (description.touched || form.submitted)">Description can not be invalid</span>
+    </div>
+    <div class="mb-3">
+      <label for="foundedAt" class="form-label">Founded At</label>
+      <input type="datetime-local" formControlName="foundedAt" name="foundedAt" class="form-control" id="foundedAt" aria-describedby="foundedAt">
+      <span class="text-danger" *ngIf="foundedAt.invalid && (foundedAt.touched || form.submitted)">Founded At can not be invalid</span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

@@ -1,4 +1,3 @@
-import { getUser } from './../../services/AuthService';
 import { Component, OnInit } from '@angular/core';
 import { Shop } from '../../interfaces/Shop';
 import { getAccessToken, getRefreshToken } from '../../services/AuthService';
@@ -6,6 +5,7 @@ import { getAllShops } from '../../services/ShopService';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { User } from '../../interfaces/User';
+import { getUser } from '../../services/UserService';
 
 @Component({
   selector: 'app-shops',
@@ -27,9 +27,7 @@ export class ShopsComponent implements OnInit {
 
   async getShops()
   {
-    const refreshToken: string = getRefreshToken();
-    const accessToken: string = (await getAccessToken(refreshToken)).data.data.accessToken;
-    this.shops= (await getAllShops(accessToken)).data.data;
+    this.shops= (await getAllShops()).data.data;
 
   }
 
@@ -37,7 +35,7 @@ export class ShopsComponent implements OnInit {
   {
     const refreshToken: string = getRefreshToken();
     const accessToken: string = (await getAccessToken(refreshToken)).data.data.accessToken;
-    this.user = (await getUser(accessToken)).data.data;
+    this.user = (await getUser()).data.data;
   }
 
 }

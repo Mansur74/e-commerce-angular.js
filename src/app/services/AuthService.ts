@@ -24,16 +24,6 @@ export const getAccessToken = async (refreshToken: string) => {
   return result;
 }
 
-export const getUser = async (accessToken: string) => {
-
-  const result = await axios.get<DataResult<User>>(`http://localhost:8080/api/authorization/me`, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`
-    }
-  });
-  return result;
-}
-
 export const getRefreshToken = () =>
 {
   const local: string = localStorage.getItem("refreshToken")!;

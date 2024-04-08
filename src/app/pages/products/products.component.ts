@@ -43,11 +43,7 @@ export class ProductsComponent implements OnInit {
   }
 
   async getProducts() {
-    const local: string = localStorage.getItem("refreshToken")!;
-    const session: string = sessionStorage.getItem("refreshToken")!;
-    const refreshToken: string = local != null ? local : session;
-    const accessToken = (await getAccessToken(refreshToken)).data.data.accessToken;
-    const result = await getAllProducts(accessToken);
+    const result = await getAllProducts();
     this.products = [...result.data.data];
     this.filterProducts();
   }

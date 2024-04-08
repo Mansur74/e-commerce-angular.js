@@ -21,7 +21,6 @@ export class SignInComponent implements OnInit {
   isLoading: boolean = false;
   errorMessage?: string;
 
-
   signInFormGroup = new FormGroup({
     email: new FormControl('', Validators.email),
     password: new FormControl('', Validators.required),

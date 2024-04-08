@@ -17,3 +17,8 @@ export const updateCart = async (cart: Cart, cartId: number) => {
   const result = await axios.put<Result>(`http://localhost:8080/api/cart/${cartId}`, cart);
   return result;
 }
+
+export const deleteCart = async (cartId: number) => {
+  const result = await axios.delete<Result>(`http://localhost:8080/api/cart/${cartId}`);
+  return result;
+}
