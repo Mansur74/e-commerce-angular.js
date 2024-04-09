@@ -250,14 +250,14 @@
         </div>
       </div>
       <div class="row row-cols-2 row-cols-min-3 gap-3">
-        <div *ngFor="let product of products" class="col card p-0" style="width: 18rem; cursor: pointer;"
-          [routerLink]="'/product/'+product.id">
+        <div *ngFor="let product of products" class="col card p-0" style="width: 18rem;">
           <img class="card-img-top object-fit-cover"
             height="192"
             [src]="product.imgURL"
             alt="Card image cap">
 
-          <div class="card-body">
+          <div class="card-body" style="cursor: pointer;"
+          [routerLink]="'/product/'+product.id">
             <span class="d-flex align-items-center">
               <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
@@ -287,11 +287,7 @@
             </span>
             <p class="text-secondary fs-6 m-0">{{product.sku}}</p>
             <p class="m-0">{{product.name}}</p>
-            <div class="d-flex align-items-center">
-              <span class="me-1">Color:</span>
-              <button class="rounded-circle border border-2 border-gray"
-                style="height: 24px; width: 24px;" [ngStyle]="{'background-color': product.color}"></button>
-            </div>
+            <p class="m-0 fw-bold">${{product.price}}.00</p>
           </div>
           <div class="card-footer">
             <div class="btn-group">

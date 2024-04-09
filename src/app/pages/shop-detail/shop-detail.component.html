@@ -2,7 +2,7 @@
   <div class="row pt-5">
     <div class="col-sm-6">
       <img class="img-fluid rounded"
-        src="https://cgifurniture.com/wp-content/uploads/2020/06/types-of-cg-product-images-view11.jpg">
+        src="https://cdn6.aptoide.com/imgs/6/4/a/64a6d7c9528ac7cb46e9cec8e4910bd7_icon.png">
     </div>
     <div class="col-sm-6">
       <span class="text-secondary">{{shop.user?.firstName}} {{shop.user?.lastName}}</span>
@@ -42,14 +42,9 @@
       <p class="lead">
         {{shop.description}}
       </p>
-      <div class="d-flex mb-3">
-        <span class="text-secondary me-3">Color</span>
-        <button class="rounded-circle text-secondary border border-gray" style="height: 24px; width: 24px;"></button>
-      </div>
+      <span class="text-secondary">Founded At: {{shop.foundedAt}}</span>
 
-      <div class="bg-secondary opacity-50 mb-3" style="height: 1px;"></div>
-
-      <div class="d-flex justify-content-between mb-5">
+      <div class="d-flex justify-content-between mb-5 mt-2">
           <button routerLink="/product/create-product" class="btn btn-light me-2 border border-secondary">Add Product</button>
       </div>
 
@@ -92,10 +87,12 @@
         </span>
         <p class="text-secondary fs-6 m-0">{{product.sku}}</p>
         <p class="m-0">{{product.name}}</p>
-        <div class="d-flex align-items-center">
-          <span class="me-1">Color:</span>
-          <button class="rounded-circle border border-2 border-gray" style="height: 24px; width: 24px;"
-            [ngStyle]="{'background-color': product.color}"></button>
+        <p class="m-0 fw-bold">${{product.price}}.00</p>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group">
+          <button [routerLink]="'/product/'+product.id" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+        
         </div>
       </div>
     </div>

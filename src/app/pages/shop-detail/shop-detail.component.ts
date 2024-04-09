@@ -1,7 +1,7 @@
 import { getShopById } from './../../services/ShopService';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { getAccessToken, getRefreshToken } from '../../services/AuthService';
 import { Shop } from '../../interfaces/Shop';
 
@@ -14,10 +14,15 @@ import { Shop } from '../../interfaces/Shop';
 })
 export class ShopDetailComponent implements OnInit {
   shop!: Shop;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit() {
-    this.getShop();
+  async ngOnInit() {
+    if (localStorage.getItem("refreshToken") == null && sessionStorage.getItem("refreshToken") == null)
+      this.router.navigate(["/sign-in"]);
+    else {
+      this.getShop();
+    }
+
   }
 
   async getShop()

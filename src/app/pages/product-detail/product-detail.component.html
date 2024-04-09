@@ -50,9 +50,10 @@
       <div class="bg-secondary opacity-50 mb-2" style="height: 1px;"></div>
 
       <div class="d-flex justify-content-between mb-5">
-        <h3>{{product?.price}}$</h3>
+        <h3>${{product?.price}}.00</h3>
         <div>
-          <button class="btn btn-secondary me-2" (click)="toggleIsReviewOpen()">Add Review</button>
+          <button class="btn btn-secondary me-2" (click)="toggleIsReviewOpen()">{{isReviewOpen ? "Close Review" : "Add
+            Review"}}</button>
           <button class="btn btn-danger me-2" (click)="addToCart()">Add To Cart</button>
           <button class="rounded-circle text-secondary p-1" style="border: none;">
             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -69,34 +70,25 @@
           src="https://i.pinimg.com/236x/86/ea/e3/86eae3d8abc2362ad6262916cb950640.jpg">
         <div class="w-100">
           <span class="d-flex align-items-center">
-            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-              </path>
-            </svg>
-            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-              </path>
-            </svg>
-            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-              </path>
-            </svg>
-            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-              </path>
-            </svg>
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-              </path>
-            </svg>
+            <a *ngFor="let item of [].constructor(productRate)" type="button">
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+            </a>
+            <a *ngFor="let item of [].constructor(5 - productRate)" type="button">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+            </a>
+            
           </span>
           <span class="text-secondary">{{user.firstName}} {{user.lastName}}</span>
-          <textarea [value]="review" (input)="review = $any($event.target).value" rows="4" class="form-control mt-1" style="resize: none;">
+          <textarea [value]="review" (input)="review = $any($event.target).value" rows="4" class="form-control mt-1"
+            style="resize: none;" placeholder="add your review...">
           </textarea>
           <a (click)="sendReview()" class="btn btn-primary float-end mt-1">Submit</a>
         </div>
@@ -105,41 +97,41 @@
       <div *ngFor="let review of product?.reviews" class="container d-flex justify-content-between">
         <div class="d-flex">
           <img class="rounded-circle me-3" width="48" height="48"
-          src="https://i.pinimg.com/236x/86/ea/e3/86eae3d8abc2362ad6262916cb950640.jpg">
-        <div>
-          <span class="d-flex align-items-center">
-            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-              </path>
-            </svg>
-            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-              </path>
-            </svg>
-            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-              </path>
-            </svg>
-            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-              </path>
-            </svg>
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-              </path>
-            </svg>
-          </span>
-          <span class="text-secondary">{{review.user?.firstName}} {{review.user?.lastName}}</span>
-          <p class="lead fs-6">
-            {{review.review}}
-          </p>
-          <span class="text-secondary" style="font-size: 14px;">20-03-2024</span>
-        </div>
+            src="https://i.pinimg.com/236x/86/ea/e3/86eae3d8abc2362ad6262916cb950640.jpg">
+          <div>
+            <span class="d-flex align-items-center">
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+            </span>
+            <span class="text-secondary">{{review.user?.firstName}} {{review.user?.lastName}}</span>
+            <p class="lead fs-6">
+              {{review.review}}
+            </p>
+            <span class="text-secondary" style="font-size: 14px;">20-03-2024</span>
+          </div>
         </div>
         <div *ngIf="user.id == review.user?.id">
           <a type="button" (click)="deleteReview(review?.id!)" class="btn btn-danger">x</a>

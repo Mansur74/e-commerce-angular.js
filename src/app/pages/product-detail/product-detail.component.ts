@@ -1,3 +1,4 @@
+import { getProductRateById } from './../../services/ProductRate';
 import { createProductReview, deleteProductReview } from './../../services/ProductReviewService';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
@@ -22,7 +23,8 @@ import { ProductReview } from '../../interfaces/ProductReview';
 export class ProductDetailComponent implements OnInit {
 
   isReviewOpen: boolean = false;
-  review!: string;
+  review: string = "";
+  productRate: number = 0;
   user!: User;
   product: Product | null = null;
   isLoading: boolean = true;
@@ -30,13 +32,14 @@ export class ProductDetailComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     if (localStorage.getItem("refreshToken") == null && sessionStorage.getItem("refreshToken") == null)
       this.router.navigate(["/sign-in"]);
     else {
       const productId = parseInt(this.route.snapshot.paramMap.get("id")!);
-      this.getProduct(productId);
-      this.getMe();
+      await this.getProduct(productId);
+      await this.getMe();
+      await this.getProductRate();
     }
 
   }
@@ -81,6 +84,14 @@ export class ProductDetailComponent implements OnInit {
     await deleteProductReview(reviewId);
     const productId = parseInt(this.route.snapshot.paramMap.get("id")!);
     this.product = (await getProductById(productId)).data.data;
+  }
+
+  getProductRate = async () => {
+    this.productRate = (await getProductRateById(this.user.id!, this.product?.id!)).data.data.rate!;
+    console.log("asfdfs", this.productRate)
+  }
+
+  handleRate = async () => {
   }
 
 }

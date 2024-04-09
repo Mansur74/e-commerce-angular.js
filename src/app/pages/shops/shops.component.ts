@@ -3,7 +3,7 @@ import { Shop } from '../../interfaces/Shop';
 import { getAccessToken, getRefreshToken } from '../../services/AuthService';
 import { getAllShops } from '../../services/ShopService';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { User } from '../../interfaces/User';
 import { getUser } from '../../services/UserService';
 
@@ -17,12 +17,16 @@ import { getUser } from '../../services/UserService';
 export class ShopsComponent implements OnInit {
   user!: User;
   shops: Shop[] = [];
-  constructor() { }
+  constructor(private router: Router) { }
 
   async ngOnInit() {
-    await this.getMe();
-    await this.getShops();
-    console.log(this.shops, this.user);
+    if (localStorage.getItem("refreshToken") == null && sessionStorage.getItem("refreshToken") == null)
+      this.router.navigate(["/sign-in"]);
+    else {
+      await this.getMe();
+      await this.getShops();
+    }
+
   }
 
   async getShops()
