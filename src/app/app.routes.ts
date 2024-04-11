@@ -15,7 +15,7 @@ import { EditShopComponent } from './pages/edit-shop/edit-shop.component';
 import { CreateProductComponent } from './pages/create-product/create-product.component';
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: ShopsComponent },
   { path: 'shops', component: ShopsComponent },
   {
     path: 'shop/:id',

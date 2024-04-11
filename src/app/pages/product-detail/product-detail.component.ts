@@ -43,6 +43,7 @@ export class ProductDetailComponent implements OnInit {
       await this.getMe();
       await this.getProductRate();
       this.calculateAverageRate();
+      console.log(this.product?.reviews);
     }
 
   }
@@ -98,7 +99,8 @@ export class ProductDetailComponent implements OnInit {
     this.product?.rates?.forEach((rate) => {
       this.averageRate += rate.rate!;
     });
-    this.averageRate /= this.product?.rates?.length!;
+    this.averageRate = Math.round(this.averageRate / this.product?.rates?.length!);
+  
   }
 
   handleRate = async (rateNum: number) => {
