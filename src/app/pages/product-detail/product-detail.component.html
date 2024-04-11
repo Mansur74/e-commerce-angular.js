@@ -8,27 +8,14 @@
       <h1 class="display-5">{{product?.name}}</h1>
       <div class="d-flex align-items-center">
         <span class="d-flex align-items-center">
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+
+          <svg *ngFor="let item of [].constructor(averageRate)" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
             </path>
           </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-            </path>
-          </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-            </path>
-          </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-            </path>
-          </svg>
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        
+          <svg *ngFor="let item of [].constructor(5 - averageRate)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
             </path>
@@ -70,14 +57,14 @@
           src="https://i.pinimg.com/236x/86/ea/e3/86eae3d8abc2362ad6262916cb950640.jpg">
         <div class="w-100">
           <span class="d-flex align-items-center">
-            <a *ngFor="let item of [].constructor(productRate)" type="button">
+            <a (click)="handleRate(i+1)" *ngFor="let item of [].constructor(productRate); let i = index" type="button">
               <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                 </path>
               </svg>
             </a>
-            <a *ngFor="let item of [].constructor(5 - productRate)" type="button">
+            <a (click)="handleRate(i+productRate+1)" *ngFor="let item of [].constructor(5 - productRate); let i = index" type="button">
               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
@@ -100,27 +87,14 @@
             src="https://i.pinimg.com/236x/86/ea/e3/86eae3d8abc2362ad6262916cb950640.jpg">
           <div>
             <span class="d-flex align-items-center">
-              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+
+              <svg *ngFor="let item of [].constructor(review.rate?.rate!)" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                 </path>
               </svg>
-              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-                </path>
-              </svg>
-              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-                </path>
-              </svg>
-              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-                </path>
-              </svg>
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            
+              <svg *ngFor="let item of [].constructor(5 - review.rate?.rate!)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
                 </path>

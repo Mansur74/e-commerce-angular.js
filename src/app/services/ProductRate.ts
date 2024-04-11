@@ -4,9 +4,15 @@ import { DataResult } from "../interfaces/DataResult";
 import { Result } from "../interfaces/Result";
 
 export const createProductRate = (productRate: ProductRate, userId: number, productId: number ) => {
-  const result = axios.post<Result>(`http://localhost:8080/api/productRate?userId=${userId}&productId=${productId}`);
+  const result = axios.post<Result>(`http://localhost:8080/api/productRate?userId=${userId}&productId=${productId}`, productRate);
   return result;
 }
+
+export const updateProductRate = (productRate: ProductRate, userId: number, productId: number ) => {
+  const result = axios.put<Result>(`http://localhost:8080/api/productRate?userId=${userId}&productId=${productId}`, productRate);
+  return result;
+}
+
 
 export const getProductRateById = (userId: number, productId: number ) => {
   const result = axios.get<DataResult<ProductRate>>(`http://localhost:8080/api/productRate?userId=${userId}&productId=${productId}`);

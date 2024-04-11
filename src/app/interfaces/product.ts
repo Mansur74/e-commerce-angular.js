@@ -1,6 +1,7 @@
 import { Shop } from './Shop';
 import { Category } from "./Category"
 import { ProductReview } from './ProductReview';
+import { ProductRate } from './ProductRate';
 
 export interface Product {
   id? : number,
@@ -13,5 +14,6 @@ export interface Product {
   imgURL?: string 
   categories?: Category[],
   reviews?: ProductReview[],
+  rates?: ProductRate[],
   shop?: Shop
 }

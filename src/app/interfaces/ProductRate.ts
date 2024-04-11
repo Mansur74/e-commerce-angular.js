@@ -1,4 +1,5 @@
 import { Product } from "./Product"
+import { ProductReview } from "./ProductReview"
 import { User } from "./User"
 
 export interface ProductRate {
@@ -6,5 +7,6 @@ export interface ProductRate {
   productId?: number,
   user?: User,
   product?: Product,
+  reviews?: ProductReview[]
   rate?: number
 }

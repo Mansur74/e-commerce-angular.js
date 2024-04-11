@@ -254,6 +254,8 @@
           <img class="card-img-top object-fit-cover"
             height="192"
             [src]="product.imgURL"
+            [routerLink]="'/product/'+product.id"
+            style="cursor: pointer;"
             alt="Card image cap">
 
           <div class="card-body" style="cursor: pointer;"

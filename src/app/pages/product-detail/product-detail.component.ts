@@ -1,4 +1,4 @@
-import { getProductRateById } from './../../services/ProductRate';
+import { getProductRateById, updateProductRate } from './../../services/ProductRate';
 import { createProductReview, deleteProductReview } from './../../services/ProductReviewService';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
@@ -12,6 +12,7 @@ import { ReviewCartComponent } from '../../components/review-cart/review-cart.co
 import { User } from '../../interfaces/User';
 import { getUser, getUserById } from '../../services/UserService';
 import { ProductReview } from '../../interfaces/ProductReview';
+import { ProductRate } from '../../interfaces/ProductRate';
 
 @Component({
   selector: 'app-product-detail',
@@ -24,7 +25,8 @@ export class ProductDetailComponent implements OnInit {
 
   isReviewOpen: boolean = false;
   review: string = "";
-  productRate: number = 0;
+  averageRate: number = 0;
+  productRate!: number;
   user!: User;
   product: Product | null = null;
   isLoading: boolean = true;
@@ -40,6 +42,7 @@ export class ProductDetailComponent implements OnInit {
       await this.getProduct(productId);
       await this.getMe();
       await this.getProductRate();
+      this.calculateAverageRate();
     }
 
   }
@@ -88,10 +91,22 @@ export class ProductDetailComponent implements OnInit {
 
   getProductRate = async () => {
     this.productRate = (await getProductRateById(this.user.id!, this.product?.id!)).data.data.rate!;
-    console.log("asfdfs", this.productRate)
   }
 
-  handleRate = async () => {
+  calculateAverageRate = () => {
+    this.averageRate = 0;
+    this.product?.rates?.forEach((rate) => {
+      this.averageRate += rate.rate!;
+    });
+    this.averageRate /= this.product?.rates?.length!;
+  }
+
+  handleRate = async (rateNum: number) => {
+    const rate: ProductRate = {rate: rateNum}
+    await updateProductRate(rate, this.user.id!, this.product?.id!);
+    await this.getProduct(this.product?.id!);
+    await this.getProductRate();
+    this.calculateAverageRate();
   }
 
 }
