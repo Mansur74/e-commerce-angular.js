@@ -6,12 +6,12 @@
           <h6 (click)="toggleCategory()" id="categories" class="dropdown-toggle">Categories</h6>
           <div class="ms-3" [ngClass]="{'d-block': isOpenCategory, 'd-none': !isOpenCategory}" >
             <div class="form-check">
-              <input [defaultChecked]="true" id="furniture" class="form-check-input" type="checkbox"
+              <input (click)="updateSelectedCategories($event)" [defaultChecked]="true" value="Furniture" id="furniture" class="form-check-input" type="checkbox"
                 style="cursor: pointer;" />
               <label for="furniture" class="form-check-label" style="cursor: pointer;">Furniture</label>
             </div>
             <div class="form-check">
-              <input [defaultChecked]="true" id="phone" class="form-check-input" type="checkbox"
+              <input (click)="updateSelectedCategories($event)" [defaultChecked]="true" value="Phone" id="phone" class="form-check-input" type="checkbox"
                 style="cursor: pointer;" />
               <label for="phone" class="form-check-label" style="cursor: pointer;">Phone</label>
             </div>
@@ -22,17 +22,17 @@
           <h6 (click)="toggleColor()" class="dropdown-toggle">Colors</h6>
           <div class="ms-3" [ngClass]="{'d-block': isOpenColor, 'd-none': !isOpenColor}">
             <div class="form-check">
-              <input [defaultChecked]="true" id="red" class="form-check-input" type="checkbox"
+              <input (click)="updateSelectedColors($event)" [defaultChecked]="true" value="red" id="red" class="form-check-input" type="checkbox"
                 style="cursor: pointer;" />
               <label for="red" class="form-check-label" style="cursor: pointer;">Red</label>
             </div>
             <div class="form-check">
-              <input [defaultChecked]="true" id="blue" class="form-check-input" type="checkbox"
+              <input (click)="updateSelectedColors($event)" [defaultChecked]="true" id="blue" value="blue" class="form-check-input" type="checkbox"
                 style="cursor: pointer;" />
               <label for="blue" class="form-check-label" style="cursor: pointer;">Blue</label>
             </div>
             <div class="form-check">
-              <input [defaultChecked]="true" id="green" class="form-check-input" type="checkbox"
+              <input (click)="updateSelectedColors($event)" [defaultChecked]="true" id="green" value="green" class="form-check-input" type="checkbox"
                 style="cursor: pointer;" />
               <label for="green" class="form-check-label" style="cursor: pointer;">Green</label>
             </div>
@@ -43,7 +43,7 @@
           <h6 (click)="toggleRate()" class="dropdown-toggle">Rates</h6>
           <div class="ms-3" [ngClass]="{'d-block': isOpenRate, 'd-none': !isOpenRate}">
             <div class="form-check">
-              <input [defaultChecked]="true" id="5" class="form-check-input" type="checkbox" style="cursor: pointer;" />
+              <input [defaultChecked]="true" (click)="updateSelectedRates($event)" value="5" id="5" class="form-check-input" type="checkbox" style="cursor: pointer;" />
               <label for="5" class="form-check-label" style="cursor: pointer;">
                 <span class="d-flex align-items-center">
                   <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -80,7 +80,7 @@
               </label>
             </div>
             <div class="form-check">
-              <input [defaultChecked]="true" id="4" class="form-check-input" type="checkbox" style="cursor: pointer;" />
+              <input [defaultChecked]="true" (click)="updateSelectedRates($event)" value="4" id="4" class="form-check-input" type="checkbox" style="cursor: pointer;" />
               <label for="4" class="form-check-label" style="cursor: pointer;">
                 <span class="d-flex align-items-center">
                   <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -117,7 +117,7 @@
               </label>
             </div>
             <div class="form-check">
-              <input [defaultChecked]="true" id="3" class="form-check-input" type="checkbox" style="cursor: pointer;" />
+              <input [defaultChecked]="true" (click)="updateSelectedRates($event)" value="3" id="3" class="form-check-input" type="checkbox" style="cursor: pointer;" />
               <label for="3" class="form-check-label" style="cursor: pointer;">
                 <span class="d-flex align-items-center">
                   <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -154,8 +154,8 @@
               </label>
             </div>
             <div class="form-check">
-              <input [defaultChecked]="true" id="3" class="form-check-input" type="checkbox" style="cursor: pointer;" />
-              <label for="3" class="form-check-label" style="cursor: pointer;">
+              <input [defaultChecked]="true" (click)="updateSelectedRates($event)" value="2" id="2" class="form-check-input" type="checkbox" style="cursor: pointer;" />
+              <label for="2" class="form-check-label" style="cursor: pointer;">
                 <span class="d-flex align-items-center">
                   <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
@@ -191,8 +191,8 @@
               </label>
             </div>
             <div class="form-check">
-              <input [defaultChecked]="true" id="3" class="form-check-input" type="checkbox" style="cursor: pointer;" />
-              <label for="3" class="form-check-label" style="cursor: pointer;">
+              <input [defaultChecked]="true" (click)="updateSelectedRates($event)" value="1" id="1" class="form-check-input" type="checkbox" style="cursor: pointer;" />
+              <label for="1" class="form-check-label" style="cursor: pointer;">
                 <span class="d-flex align-items-center">
                   <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
@@ -235,7 +235,7 @@
     <div class="w-100">
       <div class="row mb-3">
         <div class="col d-flex align-items-center">
-          <input class="row form-control w-75 me-2" type="search" placeholder="Search" aria-label="Search" />
+          <input (input)="filterProducts($event)" class="row form-control w-75 me-2" type="search" placeholder="Search" aria-label="Search" />
           <div (click)="toggleMenu()" class="mb-1 d-block" id="menu" style="cursor: pointer;">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24"
             height="24" viewBox="0 0 256 256" xml:space="preserve">
@@ -250,7 +250,7 @@
         </div>
       </div>
       <div class="row row-cols-2 row-cols-min-3 gap-3">
-        <div *ngFor="let product of products" class="col card p-0" style="width: 18rem;">
+        <div *ngFor="let product of filteredProducts" class="col card p-0" style="width: 18rem;">
           <img class="card-img-top object-fit-cover"
             height="192"
             [src]="product.imgURL"
@@ -306,9 +306,7 @@
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li *ngFor="let item of [].constructor(totalPages), let i = index" class="page-item"><a [routerLink]="'/products?pageNumber='+i+'&pageSize='+pageSize" class="page-link" href="#">{{i+1}}</a></li>
           <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
