@@ -235,7 +235,7 @@
     <div class="w-100">
       <div class="row mb-3">
         <div class="col d-flex align-items-center">
-          <input (input)="filterProducts($event)" class="row form-control w-75 me-2" type="search" placeholder="Search" aria-label="Search" />
+          <input (input)="handleSearch($event)" class="row form-control w-75 me-2" type="search" placeholder="Search" aria-label="Search" />
           <div (click)="toggleMenu()" class="mb-1 d-block" id="menu" style="cursor: pointer;">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24"
             height="24" viewBox="0 0 256 256" xml:space="preserve">
@@ -250,7 +250,7 @@
         </div>
       </div>
       <div class="row row-cols-2 row-cols-min-3 gap-3">
-        <div *ngFor="let product of filteredProducts" class="col card p-0" style="width: 18rem;">
+        <app-product-card *ngFor="let product of products" [product]="product" class="col card p-0" style="width: 18rem;">
           <img class="card-img-top object-fit-cover"
             height="192"
             [src]="product.imgURL"
@@ -297,18 +297,20 @@
             
             </div>
           </div>
-        </div>
+        </app-product-card>
       </div>
       <div class="row mt-2">
         <ul class="pagination m-0">
           <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
+            <a type="button" (click)="handlePreviousPage()" class="page-link" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <li *ngFor="let item of [].constructor(totalPages), let i = index" class="page-item"><a [routerLink]="'/products?pageNumber='+i+'&pageSize='+pageSize" class="page-link" href="#">{{i+1}}</a></li>
+          <li *ngFor="let item of [].constructor(totalPages), let i = index" class="page-item">
+            <a type="button" (click)="handlePage(i+1)" class="page-link" >{{i+1}}</a>
+          </li>
           <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
+            <a type="button" (click)="handleNextPage()" class="page-link" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>

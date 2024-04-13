@@ -26,6 +26,10 @@ export const routes: Routes = [
     {
       path: '',
       component: ShopDetailComponent
+    },
+    {
+      path: 'product',
+      component: CreateProductComponent
     }]
   },
   { path: 'products', component: ProductsComponent },

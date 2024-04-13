@@ -45,15 +45,15 @@
       <span class="text-secondary">Founded At: {{shop.foundedAt}}</span>
 
       <div class="d-flex justify-content-between mb-5 mt-2">
-          <button routerLink="/product/create-product" class="btn btn-light me-2 border border-secondary">Add Product</button>
+          <button [routerLink]="'/shop/' + shop.id + '/product'" class="btn btn-light me-2 border border-secondary">Add Product</button>
       </div>
 
     </div>
   </div>
   <div class="bg-secondary opacity-50 my-3" style="height: 1px;"></div>
   <h1 class="display-6">Products</h1>
-  <div class="row row-cols-2 row-cols-min-3 p-2">
-    <div *ngFor="let product of shop.products" class="col card p-0" style="width: 18rem; cursor: pointer;"
+  <div class="row row-cols-2 row-cols-min-3 p-2 gap-3">
+    <div *ngFor="let product of products" class="col card p-0" style="width: 18rem; cursor: pointer;"
       [routerLink]="'/product/'+product.id">
       <img class="card-img-top object-fit-cover" height="192" [src]="product.imgURL" alt="Card image cap">
 
@@ -100,15 +100,15 @@
   <div class="row mt-2 p-2">
     <ul class="pagination">
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
+        <a (click)="handlePreviousPage()" type="button" class="page-link" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li *ngFor="let item of [].constructor(totalPages); let i = index" class="page-item">
+        <a (click)="handlePage(i+1)" type="button" class="page-link">{{i+1}}</a>
+      </li>
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
+        <a (click)="handleNextPage()" type="button" class="page-link" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

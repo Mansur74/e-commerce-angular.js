@@ -5,18 +5,18 @@
 
     <div class="form-floating">
       <input class="form-control" type="email" formControlName="email" name="email" id="email" placeholder="name@example.com" />
-      <label htmlFor="email">Email address</label>
+      <label for="email">Email address</label>
       <span class="text-danger" *ngIf="email.invalid && (email.touched || signInForm.submitted)">Email can not be valid</span>
     </div>
     <div class="form-floating">
       <input class="form-control" type="password" formControlName="password" name="password" id="password"  placeholder="Password" />
-      <label htmlFor="password">Password</label>
+      <label for="password">Password</label>
       <span class="text-danger" *ngIf="password.invalid && (password.touched || signInForm.submitted)">Password can not be valid</span>
     </div>
 
     <div class="form-check text-start my-3">
-      <input class="form-check-input" id="remember" formControlName="remember" name="remember" type="checkbox" type="checkbox" />
-      <label class="form-check-label" htmlFor="remember">
+      <input style="cursor: pointer;" class="form-check-input" id="remember" formControlName="remember" name="remember" type="checkbox" type="checkbox" />
+      <label class="form-check-label" for="remember">
         Remember me
       </label>
     </div>

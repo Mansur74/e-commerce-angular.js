@@ -1,4 +1,4 @@
-import { getProductRateById, updateProductRate } from './../../services/ProductRate';
+import { createProductRate, getProductRateById, updateProductRate } from './../../services/ProductRate';
 import { createProductReview, deleteProductReview } from './../../services/ProductReviewService';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
@@ -7,17 +7,15 @@ import { Product } from '../../interfaces/Product';
 import { CommonModule } from '@angular/common';
 import { createCart } from '../../services/CartService';
 import { Cart } from '../../interfaces/Cart';
-import { getAccessToken, getRefreshToken } from '../../services/AuthService';
-import { ReviewCartComponent } from '../../components/review-cart/review-cart.component';
 import { User } from '../../interfaces/User';
-import { getUser, getUserById } from '../../services/UserService';
+import { getUser } from '../../services/UserService';
 import { ProductReview } from '../../interfaces/ProductReview';
 import { ProductRate } from '../../interfaces/ProductRate';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, ReviewCartComponent],
+  imports: [CommonModule],
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
@@ -26,7 +24,7 @@ export class ProductDetailComponent implements OnInit {
   isReviewOpen: boolean = false;
   review: string = "";
   averageRate: number = 0;
-  productRate!: number;
+  productRate: number = 0;
   user!: User;
   product: Product | null = null;
   isLoading: boolean = true;
@@ -54,8 +52,8 @@ export class ProductDetailComponent implements OnInit {
       this.product = result.data.data;
     } catch (error) {
       this.product = null;
-      console.log("dsfasf", this.product)
     }
+
     this.isLoading = false;
   }
 
@@ -104,8 +102,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
   handleRate = async (rateNum: number) => {
-    const rate: ProductRate = {rate: rateNum}
-    await updateProductRate(rate, this.user.id!, this.product?.id!);
+    const rate: ProductRate = {rate: rateNum};
+    const productRate: ProductRate | null = (await getProductRateById(this.user.id!, this.product?.id!)).data.data;
+    productRate == null ? await createProductRate(rate, this.user.id!, this.product?.id!) : await updateProductRate(rate, this.user.id!, this.product?.id!);
     await this.getProduct(this.product?.id!);
     await this.getProductRate();
     this.calculateAverageRate();

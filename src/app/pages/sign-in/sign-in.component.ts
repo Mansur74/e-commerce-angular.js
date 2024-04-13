@@ -45,7 +45,7 @@ export class SignInComponent implements OnInit {
           sessionStorage.setItem("refreshToken", result.data.data.refreshToken);
         }
         this.signInEmitter.emit(true);
-        this.router.navigate(["/products"]);
+        this.router.navigate(["/products"], {queryParams: {pageNumber: 1, pageSize: 1}});
       } catch (error) {
         if (axios.isAxiosError(error) && error.response?.status === 404) {
           const data: Result = error.response?.data;

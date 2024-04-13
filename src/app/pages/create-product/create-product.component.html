@@ -1,9 +1,14 @@
 <div class="container-fluid mt-5 pt-3">
-  <form  >
+  <form #form="ngForm" [formGroup]="formGroup" (submit)="onSubmit()">
     <div class="mb-3">
-      <label for="shopName" class="form-label">Shop Name</label>
-      <input type="text" formControlName="shopName" name="shopName" class="form-control" id="shopName" aria-describedby="shopName">
-      <span class="text-danger" *ngIf="shopName.invalid && (shopName.touched || form.submitted)">Shop Name can not be invalid</span>
+      <label for="sku" class="form-label">SKU</label>
+      <input type="text" formControlName="sku" name="sku" class="form-control" id="sku" aria-describedby="sku">
+      <span class="text-danger" *ngIf="sku.invalid && (sku.touched || form.submitted)">SKU can not be invalid</span>
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" formControlName="name" name="name" class="form-control" id="name" aria-describedby="name">
+      <span class="text-danger" *ngIf="name.invalid && (name.touched || form.submitted)">Product name can not be invalid</span>
     </div>
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
@@ -11,9 +16,24 @@
       <span class="text-danger" *ngIf="description.invalid && (description.touched || form.submitted)">Description can not be invalid</span>
     </div>
     <div class="mb-3">
-      <label for="foundedAt" class="form-label">Founded At</label>
-      <input type="datetime-local" formControlName="foundedAt" name="foundedAt" class="form-control" id="foundedAt" aria-describedby="foundedAt">
-      <span class="text-danger" *ngIf="foundedAt.invalid && (foundedAt.touched || form.submitted)">Founded At can not be invalid</span>
+      <label for="price" class="form-label">Price</label>
+      <input type="text" formControlName="price" name="price" class="form-control" id="price" aria-describedby="price">
+      <span class="text-danger" *ngIf="price.invalid && (price.touched || form.submitted)">Price can not be invalid</span>
+    </div>
+    <div class="mb-3">
+      <label for="color" class="form-label">Color</label>
+      <input type="text" formControlName="color" name="color" class="form-control" id="color" aria-describedby="color">
+      <span class="text-danger" *ngIf="color.invalid && (color.touched || form.submitted)">Color can not be invalid</span>
+    </div>
+    <div class="mb-3">
+      <label for="stock" class="form-label">Stock</label>
+      <input type="text" formControlName="stock" name="stock" class="form-control" id="stock" aria-describedby="stock">
+      <span class="text-danger" *ngIf="stock.invalid && (stock.touched || form.submitted)">Stock can not be invalid</span>
+    </div>
+    <div class="mb-3">
+      <label for="stock" class="form-label">Image URL</label>
+      <input type="text" formControlName="imgURL" name="stock" class="form-control" id="imgURL" aria-describedby="imgURL">
+      <span class="text-danger" *ngIf="imgURL.invalid && (imgURL.touched || form.submitted)">Image URL can not be invalid</span>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

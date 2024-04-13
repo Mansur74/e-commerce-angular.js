@@ -1,19 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductCartComponent } from '../../components/product-cart/product-cart.component';
 import { CommonModule } from '@angular/common';
 import { getAllProducts } from '../../services/ProductService';
 import { Product } from '../../interfaces/Product';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Router } from "@angular/router"
-import { getAccessToken } from '../../services/AuthService';
-import { Category } from '../../interfaces/Category';
-import { getAllCategories } from '../../services/CategoryService';
 import { ProductFilter } from '../../interfaces/ProductFilter';
+import { ProductCardComponent } from '../../components/product-card/product-card.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [ProductCartComponent, CommonModule, RouterLink],
+  imports: [ProductCardComponent, CommonModule, RouterLink],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
@@ -26,11 +23,10 @@ export class ProductsComponent implements OnInit {
   isOpenMenu = false;
   isSuccess: boolean = true;
   pageNumber!: number;
-  pageSize!: number;
-  totalPages!: number;
+  pageSize: number = 1;
+  totalPages: number = 0;
   products!: Product[];
-  filteredProducts: Product[] = [];
-  categories!: Category[];
+  search: string = "";
   selectedCategories: string[] = ["Furniture", "Phone"];
   selectedColors: string[] = ["red", "blue", "green"];
   selectedRates: number[] = [5, 4, 3, 2, 1];
@@ -43,22 +39,19 @@ export class ProductsComponent implements OnInit {
     if (localStorage.getItem("refreshToken") == null && sessionStorage.getItem("refreshToken") == null)
       this.router.navigate(["/sign-in"]);
     else {
-      this.getCategories();
+      this.route.queryParams.subscribe(params => {
+        this.pageNumber = params["pageNumber"];
+      });
       this.getProducts();
     }
   }
 
   async getProducts() {
-    this.route.queryParams.subscribe(params => {
-      this.pageNumber = params["pageNumber"];
-      this.pageSize = params["pageSize"];
-    });
-  
-    const productFilter: ProductFilter = {categories: this.selectedCategories, colors: this.selectedColors, rates: this.selectedRates};
+
+    const productFilter: ProductFilter = {categories: this.selectedCategories, colors: this.selectedColors, rates: this.selectedRates, search: this.search};
     const result = await getAllProducts(productFilter, this.pageNumber, this.pageSize);
     this.products = [...result.data.data.rows];
-    this.filteredProducts = this.products;
-    this.totalPages = result.data.data.totalpages; 
+    this.totalPages = result.data.data.totalPages; 
 
   }
 
@@ -69,6 +62,7 @@ export class ProductsComponent implements OnInit {
     {
       this.selectedCategories = this.selectedCategories.filter((category) => category !== event.target.value);
     }
+
     await this.getProducts();
     
   }
@@ -80,28 +74,27 @@ export class ProductsComponent implements OnInit {
     {
       this.selectedColors = this.selectedColors.filter((color) => color !== event.target.value);
     }
+
     await this.getProducts();
   }
 
   updateSelectedRates = async (event: any) => {
     if(event.target.checked)
-      this.selectedRates= [event.target.value, ...this.selectedRates]
+      this.selectedRates= [parseInt(event.target.value), ...this.selectedRates]
     else
     {
-      this.selectedRates = this.selectedRates.filter((rate) => rate !== event.target.value);
+      this.selectedRates = this.selectedRates.filter((rate) => rate !== parseInt(event.target.value));
     }
+
     await this.getProducts();
   }
 
-  filterProducts = async (event: any) => {
-    this.filteredProducts = this.products.filter(product => product.name?.includes(event.target.value))
+  handleSearch = async (event: any) => {
+   this.search = event.target.value;
+   await this.getProducts();
+   this.router.navigate(["/products"], {queryParams: {"pageNumber": 1}});
   }
 
-
-  getCategories = async () => {
-    const result = await getAllCategories();
-    this.categories = result.data.data;
-  }
 
   toggleSortDropdown() {
     this.isOpenSort = !this.isOpenSort;
@@ -121,5 +114,27 @@ export class ProductsComponent implements OnInit {
 
   toggleMenu() {
     this.isOpenMenu = !this.isOpenMenu;
+  }
+
+  handlePage = async (pageNumber: number) => {
+    this.pageNumber = pageNumber;
+    this.getProducts();
+    this.router.navigate(["/products"], {queryParams: {"pageNumber": pageNumber}});
+  }
+
+  handleNextPage = async () => {
+    if(this.pageNumber < this.totalPages){
+      this.pageNumber++;
+      this.getProducts();
+      this.router.navigate(["/products"], {queryParams: {"pageNumber": this.pageNumber}});
+    }
+  }
+
+  handlePreviousPage = async () => {
+    if(this.pageNumber > 1){
+      this.pageNumber--;
+      this.getProducts();
+      this.router.navigate(["/products"], {queryParams: {"pageNumber": this.pageNumber}});
+    }
   }
 }

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
-import { getAccessToken, getRefreshToken } from '../../services/AuthService';
 import { Shop } from '../../interfaces/Shop';
 
 @Component({

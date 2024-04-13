@@ -1,0 +1,31 @@
+<div class="col card p-0" style="width: 18rem;">
+  <img class="card-img-top object-fit-cover" height="192" [src]="product.imgURL" [routerLink]="'/product/'+product.id"
+    style="cursor: pointer;" alt="Card image cap">
+
+  <div class="card-body" style="cursor: pointer;" [routerLink]="'/product/'+product.id">
+    <span class="d-flex align-items-center">
+      <svg *ngFor="let item of [].constructor(averageRate)" fill="currentColor" stroke="currentColor"
+        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="height: 16px; width: 16px"
+        class="text-danger" viewBox="0 0 24 24">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+        </path>
+      </svg>
+
+      <svg *ngFor="let item of [].constructor(5 - averageRate)" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="2" style="height: 16px; width: 16px" class="text-danger"
+        viewBox="0 0 24 24">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+        </path>
+      </svg>
+    </span>
+    <p class="text-secondary fs-6 m-0">{{product.sku}}</p>
+    <p class="m-0">{{product.name}}</p>
+    <p class="m-0 fw-bold">${{product.price}}.00</p>
+  </div>
+  <div class="card-footer">
+    <div class="btn-group">
+      <button [routerLink]="'/product/'+product.id" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+
+    </div>
+  </div>
+</div>
