@@ -39,8 +39,7 @@
       <div class="d-flex justify-content-between mb-5">
         <h3>${{product?.price}}.00</h3>
         <div>
-          <button class="btn btn-secondary me-2" (click)="toggleIsReviewOpen()">{{isReviewOpen ? "Close Review" : "Add
-            Review"}}</button>
+          <button class="btn btn-secondary me-2" (click)="toggleIsReviewOpen()">{{isReviewOpen ? "Close Review" : "AddReview"}}</button>
           <button class="btn btn-danger me-2" (click)="addToCart()">Add To Cart</button>
           <button class="rounded-circle text-secondary p-1" style="border: none;">
             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -81,7 +80,8 @@
         </div>
       </div>
 
-      <div *ngFor="let review of product?.reviews" class="container d-flex justify-content-between">
+      <div class="overflow-auto" style="height: 300px;">
+        <div *ngFor="let review of product?.reviews" class="container d-flex justify-content-between">
         <div class="d-flex">
           <img class="rounded-circle me-3" width="48" height="48"
             src="https://i.pinimg.com/236x/86/ea/e3/86eae3d8abc2362ad6262916cb950640.jpg">
@@ -111,6 +111,7 @@
           <a type="button" (click)="deleteReview(review?.id!)" class="btn btn-danger">x</a>
         </div>
 
+      </div>      
       </div>
     </div>
   </div>

@@ -9,34 +9,21 @@
       <h1 class="display-5">{{shop.name}}</h1>
       <div class="d-flex align-items-center">
         <span class="d-flex align-items-center">
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+
+          <svg *ngFor="let item of [].constructor(averageRate)" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
             </path>
           </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-            </path>
-          </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-            </path>
-          </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-            </path>
-          </svg>
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        
+          <svg *ngFor="let item of [].constructor(5 - averageRate)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
             </path>
           </svg>
         </span>
         <div class="bg-secondary m-2 opacity-50" style="width: 1px; height: 24px;"></div>
-        <span class="text-secondary ml-3">4 Reviews</span>
+        <span class="text-secondary ml-3">{{shop.reviews?.length}} Reviews</span>
       </div>
 
       <p class="lead">
@@ -44,8 +31,76 @@
       </p>
       <span class="text-secondary">Founded At: {{shop.foundedAt}}</span>
 
-      <div class="d-flex justify-content-between mb-5 mt-2">
-          <button [routerLink]="'/shop/' + shop.id + '/product'" class="btn btn-light me-2 border border-secondary">Add Product</button>
+      <div class="d-flex justify-content-between mb-2 mt-2">
+        <button [routerLink]="'/shop/' + shop.id + '/product'" class="btn btn-light me-2 border border-secondary">Add Product</button>
+        <button class="btn btn-secondary me-2" (click)="toggleIsReviewOpen()">{{isReviewOpen ? "Close Review" : "AddReview"}}</button>
+      </div>
+
+      <div class="bg-secondary opacity-50 mb-2" style="height: 1px;"></div>
+
+      <div [ngClass]="{'d-flex': isReviewOpen, 'd-none': !isReviewOpen}" class="container mb-3">
+        <img class="rounded-circle me-3" width="48" height="48"
+          src="https://i.pinimg.com/236x/86/ea/e3/86eae3d8abc2362ad6262916cb950640.jpg">
+        <div class="w-100">
+          <span class="d-flex align-items-center">
+            <a (click)="handleRate(i+1)" *ngFor="let item of [].constructor(shopRate); let i = index" type="button">
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+            </a>
+            <a (click)="handleRate(i+shopRate+1)" *ngFor="let item of [].constructor(5 - shopRate); let i = index" type="button">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                </path>
+              </svg>
+            </a>
+            
+          </span>
+          <span class="text-secondary">{{user.firstName}} {{user.lastName}}</span>
+          <textarea [value]="review" (input)="review = $any($event.target).value" rows="4" class="form-control mt-1"
+            style="resize: none;" placeholder="add your review...">
+          </textarea>
+          <a (click)="sendReview()" class="btn btn-primary float-end mt-1">Submit</a>
+        </div>
+      </div>
+
+      <div class="overflow-auto" style="height: 300px;">
+        <div *ngFor="let review of shop.reviews" class="container d-flex justify-content-between">
+          <div class="d-flex">
+            <img class="rounded-circle me-3" width="48" height="48"
+              src="https://i.pinimg.com/236x/86/ea/e3/86eae3d8abc2362ad6262916cb950640.jpg">
+            <div>
+              <span class="text-secondary" style="font-size: 14px;">20-03-2024</span>
+              <span class="d-flex align-items-center">
+
+                <svg *ngFor="let item of [].constructor(review.rate?.rate!)" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                  </path>
+                </svg>
+
+                <svg *ngFor="let item of [].constructor(5 - review.rate?.rate!)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                  </path>
+                </svg>
+              </span>
+              <span class="text-secondary">{{user.firstName}} {{user.lastName}}</span>
+              <p class="lead fs-6">
+                {{review.review}}
+              </p>
+            </div>
+          </div>
+          <div>
+            <a (click)="deleteReview(review.id!)" type="button" class="btn btn-danger">x</a>
+          </div>
+
+        </div>
       </div>
 
     </div>
@@ -53,49 +108,8 @@
   <div class="bg-secondary opacity-50 my-3" style="height: 1px;"></div>
   <h1 class="display-6">Products</h1>
   <div class="row row-cols-2 row-cols-min-3 p-2 gap-3">
-    <div *ngFor="let product of products" class="col card p-0" style="width: 18rem; cursor: pointer;"
-      [routerLink]="'/product/'+product.id">
-      <img class="card-img-top object-fit-cover" height="192" [src]="product.imgURL" alt="Card image cap">
-
-      <div class="card-body">
-        <span class="d-flex align-items-center">
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-            </path>
-          </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-            </path>
-          </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-            </path>
-          </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-            </path>
-          </svg>
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            style="height: 16px; width: 16px" class="text-danger" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-            </path>
-          </svg>
-        </span>
-        <p class="text-secondary fs-6 m-0">{{product.sku}}</p>
-        <p class="m-0">{{product.name}}</p>
-        <p class="m-0 fw-bold">${{product.price}}.00</p>
-      </div>
-      <div class="card-footer">
-        <div class="btn-group">
-          <button [routerLink]="'/product/'+product.id" type="button" class="btn btn-sm btn-outline-secondary">View</button>
-        
-        </div>
-      </div>
-    </div>
+    <app-product-card *ngFor="let product of products" [product]="product">
+    </app-product-card>
   </div>
   <div class="row mt-2 p-2">
     <ul class="pagination">

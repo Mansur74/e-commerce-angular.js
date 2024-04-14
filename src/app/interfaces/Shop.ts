@@ -1,4 +1,6 @@
 import { Product } from './Product';
+import { ShopRate } from './ShopRate';
+import { ShopReview } from './ShopReview';
 import { User } from './User';
 export interface Shop {
   id?: number,
@@ -6,5 +8,7 @@ export interface Shop {
   description?: string,
   foundedAt?: string,
   user?: User,
-  products?: Product[]
+  products?: Product[],
+  reviews?: ShopReview[],
+  rates?: ShopRate[]
 }

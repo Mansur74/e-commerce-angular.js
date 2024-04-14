@@ -1,4 +1,4 @@
-import { createProductRate, getProductRateById, updateProductRate } from './../../services/ProductRate';
+import { createProductRate, getProductRateById, updateProductRate } from '../../services/ProductRateService';
 import { createProductReview, deleteProductReview } from './../../services/ProductReviewService';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
@@ -41,7 +41,6 @@ export class ProductDetailComponent implements OnInit {
       await this.getMe();
       await this.getProductRate();
       this.calculateAverageRate();
-      console.log(this.product?.reviews);
     }
 
   }
