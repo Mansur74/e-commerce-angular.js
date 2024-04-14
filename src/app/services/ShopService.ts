@@ -3,11 +3,12 @@ import { DataResult } from "../interfaces/DataResult";
 import { Shop } from "../interfaces/Shop";
 import { Result } from "../interfaces/Result";
 import { getAccessToken, getRefreshToken } from "./AuthService";
+import { PageResult } from "../interfaces/PageResult";
 
-export const getAllShops = async () => {
+export const getAllShops = async (pageNumber: number, pageSize: number) => {
   const refreshToken = getRefreshToken();
   const accessToken = (await getAccessToken(refreshToken)).data.data.accessToken;
-  const result = await axios.get<DataResult<Shop[]>>(`http://localhost:8080/api/shop`, {
+  const result = await axios.get<DataResult<PageResult<Shop>>>(`http://localhost:8080/api/shops?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
     headers: { 
       Authorization: `Bearer ${accessToken}` 
     }

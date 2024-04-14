@@ -57,15 +57,17 @@
   <div class="row mt-2">
     <ul class="pagination">
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
+        <a type="button" (click)="handlePreviousPage()" class="page-link" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
+        <a type="button" *ngFor="let item of [].constructor(totalPages); let i = index" class="page-link" (click)="handlePage(i+1)">
+          {{i+1}}
+        </a>
+      </li>
+      <li class="page-item">
+        <a type="button" (click)="handleNextPage()" class="page-link" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

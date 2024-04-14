@@ -31,9 +31,9 @@
       </p>
       <span class="text-secondary">Founded At: {{shop.foundedAt}}</span>
 
-      <div class="d-flex justify-content-between mb-2 mt-2">
+      <div class="d-flex justify-content-start mb-2 mt-2">
         <button [routerLink]="'/shop/' + shop.id + '/product'" class="btn btn-light me-2 border border-secondary">Add Product</button>
-        <button class="btn btn-secondary me-2" (click)="toggleIsReviewOpen()">{{isReviewOpen ? "Close Review" : "AddReview"}}</button>
+        <button class="btn btn-secondary me-2" (click)="toggleIsReviewOpen()">{{isReviewOpen ? "Close Review" : "Add Review"}}</button>
       </div>
 
       <div class="bg-secondary opacity-50 mb-2" style="height: 1px;"></div>
@@ -107,11 +107,11 @@
   </div>
   <div class="bg-secondary opacity-50 my-3" style="height: 1px;"></div>
   <h1 class="display-6">Products</h1>
-  <div class="row row-cols-2 row-cols-min-3 p-2 gap-3">
-    <app-product-card *ngFor="let product of products" [product]="product">
+  <div class="row row-cols-2 row-cols-min-3  gap-3">
+    <app-product-card class="p-0" *ngFor="let product of products" [product]="product">
     </app-product-card>
   </div>
-  <div class="row mt-2 p-2">
+  <div class="row mt-2">
     <ul class="pagination">
       <li class="page-item">
         <a (click)="handlePreviousPage()" type="button" class="page-link" aria-label="Previous">

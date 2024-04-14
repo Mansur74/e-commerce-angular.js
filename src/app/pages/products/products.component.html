@@ -250,12 +250,12 @@
         </div>
       </div>
       <div class="row row-cols-2 row-cols-min-3 gap-3">
-        <app-product-card *ngFor="let product of products" [product]="product">
+        <app-product-card class="p-0" *ngFor="let product of products" [product]="product">
           
         </app-product-card>
       </div>
       <div class="row mt-2">
-        <ul class="pagination m-0">
+        <ul class="pagination">
           <li class="page-item">
             <a type="button" (click)="handlePreviousPage()" class="page-link" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>

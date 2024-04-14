@@ -4,7 +4,7 @@
       <img class="img-fluid rounded" [src]="product?.imgURL">
     </div>
     <div class="col-sm-6">
-      <span class="text-secondary">{{product?.sku}}</span>
+      <span class="text-secondary">{{product?.shop?.name}}</span>
       <h1 class="display-5">{{product?.name}}</h1>
       <div class="d-flex align-items-center">
         <span class="d-flex align-items-center">
@@ -39,7 +39,7 @@
       <div class="d-flex justify-content-between mb-5">
         <h3>${{product?.price}}.00</h3>
         <div>
-          <button class="btn btn-secondary me-2" (click)="toggleIsReviewOpen()">{{isReviewOpen ? "Close Review" : "AddReview"}}</button>
+          <button class="btn btn-secondary me-2" (click)="toggleIsReviewOpen()">{{isReviewOpen ? "Close Review" : "Add Review"}}</button>
           <button class="btn btn-danger me-2" (click)="addToCart()">Add To Cart</button>
           <button class="rounded-circle text-secondary p-1" style="border: none;">
             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
